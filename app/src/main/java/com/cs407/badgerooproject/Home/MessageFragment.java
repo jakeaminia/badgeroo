@@ -1,4 +1,4 @@
-package com.cs407.badgerooproject;
+package com.cs407.badgerooproject.Home;
 
 import android.os.Bundle;
 
@@ -8,14 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cs407.badgerooproject.R;
+
 // Activity: FindRoommatesActivity
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FindRoommatesFragment#newInstance} factory method to
+ * Use the {@link MessageFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FindRoommatesFragment extends Fragment {
+public class MessageFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +28,7 @@ public class FindRoommatesFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public FindRoommatesFragment() {
+    public MessageFragment() {
         // Required empty public constructor
     }
 
@@ -36,11 +38,11 @@ public class FindRoommatesFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FindRoommatesFragment.
+     * @return A new instance of fragment IndividualMessageFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FindRoommatesFragment newInstance(String param1, String param2) {
-        FindRoommatesFragment fragment = new FindRoommatesFragment();
+    public static MessageFragment newInstance(String param1, String param2) {
+        MessageFragment fragment = new MessageFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +63,6 @@ public class FindRoommatesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_find_roommates, container, false);
+        return inflater.inflate(R.layout.fragment_message, container, false);
     }
 }
