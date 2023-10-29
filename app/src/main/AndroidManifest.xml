@@ -13,6 +13,12 @@
         android:theme="@style/Theme.BadgerooProject"
         tools:targetApi="31">
         <activity
+            android:name=".Setup.UploadProfilePicture"
+            android:exported="false" />
+        <activity
+            android:name=".Setup.SetUpPreferences"
+            android:exported="false" />
+        <activity
             android:name=".Home.FindRoommatesActivity"
             android:exported="false" />
         <activity
