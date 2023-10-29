@@ -9,26 +9,30 @@
 
     <!-- Example Views inside ConstraintLayout -->
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/red">
+        android:background="@color/red"
+        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp">
 
         <TextView
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textStyle = "bold"
+            android:textColor="@color/white"
             android:text="Set Your Preferences"
-            android:textStyle="bold"
-            android:textSize="30dp"
-            android:fontFamily="@font/font4"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            />  <!-- Reference your custom font here -->
+            android:textSize="30dp"
+          />  <!-- Reference your custom font here -->
 
     </androidx.appcompat.widget.Toolbar>
-
 
     <TextView
         android:id="@+id/textView"
@@ -113,7 +117,7 @@
         android:layout_marginTop="248dp"
         android:text="Roommate Gender"
         app:layout_constraintEnd_toStartOf="@+id/radioGroup"
-        app:layout_constraintHorizontal_bias="0.323"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -121,12 +125,12 @@
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_marginBottom="24dp"
         android:text="Number of Roommates"
-        android:layout_marginLeft="20dp"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
         app:layout_constraintEnd_toStartOf="@+id/editText3"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.281"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -204,30 +208,35 @@
         style="@style/CustomTextViewStyle"
         android:layout_width="105dp"
         android:layout_height="49dp"
+        android:layout_marginBottom="64dp"
         android:hint="MM/YYYY"
-        tools:layout_editor_absoluteX="171dp"
-        tools:layout_editor_absoluteY="613dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editText5"
         style="@style/CustomTextViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
         android:hint="MM/YYYY"
-        tools:layout_editor_absoluteX="301dp"
-        tools:layout_editor_absoluteY="615dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.921"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="76dp"
         android:text="to"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editText5"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/editText4" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.681"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
         android:id="@+id/radioGroup2"
@@ -273,7 +282,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="68dp"
+        android:layout_marginEnd="40dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10">

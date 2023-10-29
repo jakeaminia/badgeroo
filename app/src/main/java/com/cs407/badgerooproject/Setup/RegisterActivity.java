@@ -1,8 +1,10 @@
-package com.cs407.badgerooproject;
+package com.cs407.badgerooproject.Setup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.cs407.badgerooproject.R;
 
 // Fragments: None
 
