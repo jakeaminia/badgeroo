@@ -3,27 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#AA0000">
 
     <ImageView
         android:id="@+id/roommate_picture"
         android:layout_width="match_parent"
         android:layout_height="256dp"
+        android:background="#958787"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/roommate_name"
-        android:layout_width="193dp"
-        android:layout_height="34dp"
+        android:layout_width="236dp"
+        android:layout_height="54dp"
         android:text="John Doe"
-        android:textSize="24sp"
+        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.137"
+        app:layout_constraintHorizontal_bias="0.091"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.355" />
+        app:layout_constraintVertical_bias="0.333" />
+
+    <Button
+        android:id="@+id/message_roommate"
+        android:layout_width="261dp"
+        android:layout_height="52dp"
+        android:text="Message John"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roommate_bio" />
+
+    <TextView
+        android:id="@+id/roommate_bio"
+        android:layout_width="393dp"
+        android:layout_height="303dp"
+        android:text="John's bio"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roommate_name"
+        app:layout_constraintVertical_bias="0.198" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
