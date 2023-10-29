@@ -4,6 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/register_gradient"
     tools:context=".Setup.RegisterActivity">
+
+
+    <TextView
+        android:id="@+id/register_welcome_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register to BadgerRoo!"
+        android:textColor="@color/white"
+        android:textSize="36dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.172" />
+
+    <EditText
+        android:id="@+id/email_edt"
+        android:layout_width="308dp"
+        android:layout_height="37dp"
+        android:background="@drawable/register_edt_background"
+        android:drawableLeft="@drawable/email_ic"
+        android:drawablePadding="10dp"
+        android:hint="Email / Phone number"
+        android:textColorHint="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.592"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_welcome_msg"
+        app:layout_constraintVertical_bias="0.223"></EditText>
+
+    <EditText
+        android:id="@+id/passwrod_edt"
+        android:layout_width="308dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="320dp"
+        android:background="@drawable/register_edt_background"
+        android:drawableLeft="@drawable/password_ic"
+        android:drawablePadding="10dp"
+        android:hint="Password"
+        android:textColorHint="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.592"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/register_btn"
+        android:layout_width="193dp"
+        android:layout_height="55dp"
+        android:backgroundTint="@color/white"
+        android:text="REGISTER"
+        android:textColor="@color/red"
+        android:textSize="26dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwrod_edt"
+        app:layout_constraintVertical_bias="0.332"></Button>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
