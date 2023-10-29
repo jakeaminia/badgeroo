@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="0.954" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/search_location_edt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/search_ic"
@@ -31,6 +31,7 @@
         app:layout_constraintVertical_bias="0.2" />
 
     <EditText
+        android:id="@+id/radius_edt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Radius (miles)"
@@ -39,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText8"
+        app:layout_constraintTop_toBottomOf="@+id/search_location_edt"
         app:layout_constraintVertical_bias="0.421" />
 
 

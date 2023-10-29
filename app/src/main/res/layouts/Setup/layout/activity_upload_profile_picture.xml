@@ -7,7 +7,7 @@
     tools:context=".Setup.UploadProfilePicture">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/preference_toolbar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/red"
@@ -16,7 +16,7 @@
         tools:layout_editor_absoluteX="0dp">
 
         <TextView
-            android:id="@+id/toolbar_title"
+            android:id="@+id/preference_toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -39,10 +39,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/preference_toolbar"
         app:layout_constraintVertical_bias="0.264" />
 
     <ImageView
+        android:id="@+id/photo_img"
         android:layout_width="69dp"
         android:layout_height="70dp"
         android:src="@drawable/insert_photo_ic"
@@ -53,6 +54,7 @@
         app:layout_constraintVertical_bias="0.27" />
 
     <ImageView
+        android:id="@+id/arrow_img"
         android:layout_width="59dp"
         android:layout_height="50dp"
         android:layout_marginBottom="72dp"
