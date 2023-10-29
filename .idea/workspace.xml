@@ -9,7 +9,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ed1358a-a8b0-419f-bd33-2530a76b046c" name="Changes" comment="Milestone 1 for most of home activity" />
+    <list default="true" id="8ed1358a-a8b0-419f-bd33-2530a76b046c" name="Changes" comment="Milestone 1 for most of home activity">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
