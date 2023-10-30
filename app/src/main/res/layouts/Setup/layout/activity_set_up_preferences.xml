@@ -4,16 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/CustomTextViewTheme"
-    tools:context=".Setup.SetupPreferencesFragment">
-
-    <!-- Example Views inside ConstraintLayout -->
-
+    tools:context=".Setup.SetUpPreferences"
+    android:theme="@style/CustomTextViewTheme">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/preference_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="80dp"
         android:background="@color/red"
         app:layout_constraintBottom_toTopOf="@+id/budget_start_edt"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,10 +24,11 @@
             android:layout_gravity="center"
             android:textStyle = "bold"
             android:textColor="@color/white"
+            android:fontFamily="sans-serif-medium"
             android:text="Set Your Preferences"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textSize="30dp"
-          />  <!-- Reference your custom font here -->
+            />  <!-- Reference your custom font here -->
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -117,7 +115,7 @@
         android:layout_marginTop="248dp"
         android:text="Roommate Gender"
         app:layout_constraintEnd_toStartOf="@+id/gender_rdg"
-        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintHorizontal_bias="0.252"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -126,11 +124,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="28dp"
         android:text="Number of Roommates"
         app:layout_constraintBottom_toTopOf="@+id/roommate_gender_txt"
         app:layout_constraintEnd_toStartOf="@+id/num_of_roommates_edt"
-        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintHorizontal_bias="0.373"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -140,7 +138,7 @@
         android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toTopOf="@+id/gender_rdg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.916"
+        app:layout_constraintHorizontal_bias="0.747"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -162,7 +160,7 @@
         android:layout_marginTop="124dp"
         android:src="@drawable/baseline_map_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.581"
+        app:layout_constraintHorizontal_bias="0.677"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roommate_gender_txt" />
 
@@ -240,7 +238,7 @@
 
     <RadioGroup
         android:id="@+id/housing_rdg"
-        android:layout_width="0dp"
+        android:layout_width="127dp"
         android:layout_height="145dp"
         android:layout_marginStart="27dp"
         android:layout_marginTop="47dp"
@@ -249,10 +247,13 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/to2_txt"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/location_txt"
-        app:layout_constraintTop_toTopOf="@+id/location_txt">
+        app:layout_constraintTop_toTopOf="@+id/location_txt"
+        app:layout_constraintVertical_bias="0.923">
 
         <RadioButton
+            android:id="@+id/apartment_rd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="0dp"
@@ -261,6 +262,7 @@
             tools:layout_editor_absoluteY="406dp" />
 
         <RadioButton
+            android:id="@+id/house"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="0dp"
@@ -269,6 +271,7 @@
             tools:layout_editor_absoluteY="406dp" />
 
         <RadioButton
+            android:id="@+id/housingBoth_rd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="0dp"
@@ -288,6 +291,7 @@
         app:layout_constraintTop_toBottomOf="@+id/num_of_roommates_txt">
 
         <RadioButton
+            android:id="@+id/male_rd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="0dp"
@@ -296,6 +300,7 @@
             tools:layout_editor_absoluteY="406dp" />
 
         <RadioButton
+            android:id="@+id/female_rd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="0dp"
@@ -304,6 +309,7 @@
             tools:layout_editor_absoluteY="406dp" />
 
         <RadioButton
+            android:id="@+id/genderBoth_rd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="0dp"
@@ -312,5 +318,15 @@
             tools:layout_editor_absoluteY="406dp" />
     </RadioGroup>
 
+    <ImageView
+        android:id="@+id/arrow_img"
+        android:layout_width="60dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="28dp"
+        android:src="@drawable/baseline_arrow_forward_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintStart_toStartOf="parent"></ImageView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
