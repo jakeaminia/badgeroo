@@ -13,7 +13,9 @@
     <list default="true" id="8ed1358a-a8b0-419f-bd33-2530a76b046c" name="Changes" comment="Milestone 1 for most of home activity" />
 =======
     <list default="true" id="8ed1358a-a8b0-419f-bd33-2530a76b046c" name="Changes" comment="Milestone 1 for most of home activity">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layouts/Home/layout/fragment_messages_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layouts/Home/layout/fragment_messages_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/untrack_files.sh" beforeDir="false" afterPath="$PROJECT_DIR$/untrack_files.sh" afterDir="false" />
     </list>
 >>>>>>> 2787af26e1a3362f657371be44e9291768c876b7
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +23,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\Anshul\.android\avd\Lab_1_-_Pixel_6_Pro.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/franklinliou/.android/avd/Pixel_6_Pro_API_34.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
