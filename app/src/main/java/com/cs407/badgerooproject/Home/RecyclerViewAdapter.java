@@ -1,6 +1,8 @@
 package com.cs407.badgerooproject.Home;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +21,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private static final String TAG = "RecyclerViewAdapter";
 
+    private MessageListener mMessageListener;
     private ArrayList<String> names = new ArrayList<>();
     private ArrayList<String> pictureURLs = new ArrayList<>();
     private ArrayList<String> messageButtons = new ArrayList<>();
     private ArrayList<String> bios = new ArrayList<>();
 
-    public RecyclerViewAdapter(ArrayList<String> names, ArrayList<String> pictureURLs, ArrayList<String> messageButtons, ArrayList<String> bios) {
+    public RecyclerViewAdapter(ArrayList<String> names, ArrayList<String> pictureURLs, ArrayList<String> messageButtons, ArrayList<String> bios, MessageListener messageListener) {
+        this.mMessageListener = messageListener;
         this.names = names;
         this.pictureURLs = pictureURLs;
         this.messageButtons = messageButtons;
@@ -35,7 +39,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.roommate_profile, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, mMessageListener);
     }
 
     @Override
@@ -44,7 +48,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.bio.setText(bios.get(position));
         holder.messageButton.setText(String.format("Message %s", names.get(position).split(" ")[0]));
         holder.messageButton.setOnClickListener(v -> {
-
+            mMessageListener.onButtonClick(position);
         });
     }
 
@@ -59,13 +63,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView name;
         TextView bio;
 
-        public ViewHolder(@NonNull View itemView) {
+        MessageListener messageListener;
+
+        public ViewHolder(@NonNull View itemView, MessageListener messageListener) {
             super(itemView);
 
+            this.messageListener = messageListener;
             profilePicture = itemView.findViewById(R.id.roommate_picture);
             messageButton = itemView.findViewById(R.id.message_roommate);
             name = itemView.findViewById(R.id.roommate_name);
             bio = itemView.findViewById(R.id.roommate_bio);
         }
+
+    }
+
+    public interface MessageListener {
+        void onButtonClick(int position);
     }
 }

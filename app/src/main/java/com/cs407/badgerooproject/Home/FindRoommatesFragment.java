@@ -18,7 +18,7 @@ import java.util.ArrayList;
 // Activity: FindRoommatesActivity
 
 
-public class FindRoommatesFragment extends Fragment {
+public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapter.MessageListener {
     private ArrayList<String> names = new ArrayList<>();
     private ArrayList<String> pictureURLs = new ArrayList<>();
     private ArrayList<String> messageButtons = new ArrayList<>();
@@ -42,7 +42,7 @@ public class FindRoommatesFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView recyclerView = currentView.findViewById(R.id.roommatesRecyclerView);
         recyclerView.setLayoutManager(layoutManager);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(names, pictureURLs, messageButtons, bios);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(names, pictureURLs, messageButtons, bios, (RecyclerViewAdapter.MessageListener) this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -53,5 +53,11 @@ public class FindRoommatesFragment extends Fragment {
         currentView = inflater.inflate(R.layout.fragment_find_roommates, container, false);
         initRecyclerView();
         return currentView;
+    }
+
+
+    @Override
+    public void onButtonClick(int position) {
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.HomeFragmentContainer, new MessageFragment()).commit();
     }
 }
