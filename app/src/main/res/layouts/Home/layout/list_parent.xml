@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/listParent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/listParent"
-    android:text="List Parent Title">
+    android:background="#AAAAAA"
+    android:paddingVertical="10sp"
+    android:text="List Parent Title"
+    android:textColor="#aa0000"
+    android:textSize="26sp"
+    android:textStyle="bold">
 
 </TextView>

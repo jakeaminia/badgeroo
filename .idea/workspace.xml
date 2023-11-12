@@ -10,11 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ed1358a-a8b0-419f-bd33-2530a76b046c" name="Changes" comment="Milestone 1 for most of home activity">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/cs407/badgerooproject/Home/ExpandableListViewAdapterEditProfile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/cs407/badgerooproject/Home/ExpandableListViewAdapterSettings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cs407/badgerooproject/Home/FindRoommatesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cs407/badgerooproject/Home/FindRoommatesFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cs407/badgerooproject/Home/RecyclerViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cs407/badgerooproject/Home/RecyclerViewAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cs407/badgerooproject/Home/EditProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cs407/badgerooproject/Home/EditProfileFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cs407/badgerooproject/Home/ExpandableListViewAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cs407/badgerooproject/Home/SettingsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cs407/badgerooproject/Home/SettingsFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cs407/badgerooproject/Login/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cs407/badgerooproject/Login/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layouts/Home/layout/fragment_find_roommates.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layouts/Home/layout/fragment_find_roommates.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layouts/Home/layout/fragment_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layouts/Home/layout/fragment_settings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,6 +110,9 @@
   <component name="RecentsManager">
     <key name="android.template.-1816996490">
       <recent name="com.cs407.badgerooproject" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.cs407.badgerooproject.Home" />
     </key>
   </component>
   <component name="RunManager">
