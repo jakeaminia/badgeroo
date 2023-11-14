@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".Home.FindRoommatesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
+        android:id="@+id/roommatesRecyclerView"
         android:layout_height="match_parent"
         android:orientation="horizontal" />
 

@@ -1,67 +1,83 @@
 package com.cs407.badgerooproject.Home;
 
 import android.os.Bundle;
+
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 
 import com.cs407.badgerooproject.R;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 // Activity: FindRoommatesActivity
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SettingsFragment#newInstance} factory method to
- * create an instance of this fragment.
- *
- */
 public class SettingsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SettingsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SettingsFragment newInstance(String param1, String param2) {
-        SettingsFragment fragment = new SettingsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    public SettingsFragment() {
-        // Required empty public constructor
-    }
+    View currentView;
+    ExpandableListViewAdapterSettings viewAdapter;
+    ExpandableListView expandableListView;
+    ArrayList<String> listParents;
+    HashMap<String, ArrayList<String>> listChildren;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+        Log.i("message", String.valueOf(getActivity()));
+    }
+
+    private void showList() {
+        listParents = new ArrayList<>();
+        listChildren = new HashMap<>();
+
+        listParents.add("parent 1");
+        listParents.add("parent 2");
+        listParents.add("parent 3");
+        listParents.add("parent 4");
+        listParents.add("parent 5");
+
+        ArrayList<String> children1 = new ArrayList<>();
+        children1.add("Child 1");
+
+        ArrayList<String> children2 = new ArrayList<>();
+        children2.add("Child 2");
+
+        ArrayList<String> children3 = new ArrayList<>();
+        children3.add("Child 3");
+
+        ArrayList<String> children4 = new ArrayList<>();
+        children4.add("Child 4");
+
+        ArrayList<String> children5 = new ArrayList<>();
+        children5.add("Child 5");
+
+        listChildren.put(listParents.get(0), children1);
+        listChildren.put(listParents.get(1), children2);
+        listChildren.put(listParents.get(2), children3);
+        listChildren.put(listParents.get(3), children4);
+        listChildren.put(listParents.get(4), children5);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        currentView = inflater.inflate(R.layout.fragment_settings, container, false);
+
+        expandableListView = currentView.findViewById(R.id.expandableListSettings);
+
+        showList();
+
+        viewAdapter = new ExpandableListViewAdapterSettings(getContext(), listParents, listChildren);
+        expandableListView.setAdapter(viewAdapter);
+
+        return currentView;
     }
 }
