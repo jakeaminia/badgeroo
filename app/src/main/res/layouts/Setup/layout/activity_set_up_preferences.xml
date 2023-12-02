@@ -318,8 +318,8 @@
             tools:layout_editor_absoluteY="406dp" />
     </RadioGroup>
 
-    <ImageView
-        android:id="@+id/arrow_img"
+    <ImageButton
+        android:id="@+id/arrow_btn_preferences"
         android:layout_width="60dp"
         android:layout_height="36dp"
         android:layout_marginBottom="28dp"
@@ -327,6 +327,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.931"
-        app:layout_constraintStart_toStartOf="parent"></ImageView>
+        app:layout_constraintStart_toStartOf="parent"></ImageButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
