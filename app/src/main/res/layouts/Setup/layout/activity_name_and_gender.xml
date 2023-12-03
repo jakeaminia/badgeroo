@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Setup.NameAndGender"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="0dp">
+
+    <EditText
+        android:id="@+id/fullName_edt"
+        android:layout_width="308dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="168dp"
+        android:background="@drawable/full_name_background"
+        android:drawableLeft="@drawable/full_name_background"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:hint="Your Full Name"
+        android:padding="20dp"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/gender_rdg_fullName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.781" />
+
+    <RadioGroup
+        android:id="@+id/gender_rdg_fullName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <RadioButton
+            android:id="@+id/female_rd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="15dp"
+            android:paddingBottom="0dp"
+            android:text="Female"
+            android:textSize="18dp"
+            tools:layout_editor_absoluteX="112dp"
+            tools:layout_editor_absoluteY="446dp" />
+
+        <RadioButton
+            android:id="@+id/male_rd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:paddingBottom="0dp"
+            android:text="Male"
+            android:textSize="18dp"
+            tools:layout_editor_absoluteX="206dp"
+            tools:layout_editor_absoluteY="445dp" />
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You cannot edit these entries in the future."
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gender_rdg_fullName" />
+
+    <ImageButton
+        android:id="@+id/arrow_btn_fullName"
+        android:layout_width="59dp"
+        android:layout_height="50dp"
+        android:src="@drawable/baseline_arrow_forward_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.852"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gender_rdg_fullName"
+        app:layout_constraintVertical_bias="0.733"></ImageButton>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
