@@ -39,7 +39,8 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Please enter your email and password", Toast.LENGTH_LONG).show();
                 }else{
                     dbHelper.insertLoginCredentials(email, password);
-                    Intent intent = new Intent(RegisterActivity.this, UploadProfilePicture.class);
+                    Intent intent = new Intent(RegisterActivity.this, NameAndGender.class);
+                    intent.putExtra("email", email);
                     startActivity(intent);
                 }
             }

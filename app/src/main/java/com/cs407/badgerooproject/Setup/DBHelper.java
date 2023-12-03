@@ -83,13 +83,13 @@ public class DBHelper extends SQLiteOpenHelper{
         return newRowId != -1;
     }
 
-    public boolean insertBasicDetails(String fullName, String gender) {
+    public boolean insertBasicDetails(String email, String fullName, String gender) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_FULL_NAME, fullName);
         values.put(COLUMN_GENDER, gender);
 
-        long newRowId = db.insert(TABLE_USER, null, values);
+        long newRowId = db.update(TABLE_USER, values, COLUMN_EMAIL + " = ?", new String[]{email});
         db.close();
         return newRowId != -1;
     }
