@@ -50,6 +50,7 @@ public class NameAndGender extends AppCompatActivity {
                     String gender = selectedRadioButton.getText().toString();
                     dbHelper.insertBasicDetails(email, name, gender);
                     Intent intent = new Intent(NameAndGender.this, UploadProfilePicture.class);
+                    intent.putExtra("email", email);
                     startActivity(intent);
                 }
             }
