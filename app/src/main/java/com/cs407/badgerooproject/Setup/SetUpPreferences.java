@@ -109,17 +109,17 @@ public class SetUpPreferences extends AppCompatActivity {
 
 
                 // Update preferences in database
-//                DBHelper dbHelper = new DBHelper(SetUpPreferences.this);
-//                if(dbHelper.updatePreferences(email, Double.parseDouble(minBudget), Double.parseDouble(maxBudget),
-//                        Integer.parseInt(roommateNum), genderPreference,
-//                        housingStyle, startDate, endDate)) {
-//                    Toast.makeText(SetUpPreferences.this, "Preferences updated", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(SetUpPreferences.this, FindRoommatesActivity.class);
-//                    intent.putExtra("email", email);
-//                    startActivity(intent);
-//                } else {
-//                    Toast.makeText(SetUpPreferences.this, "Error updating preferences", Toast.LENGTH_SHORT).show();
-//                }
+                DBHelper dbHelper = new DBHelper(SetUpPreferences.this);
+                if(dbHelper.updatePreferences(email, Double.parseDouble(minBudget), Double.parseDouble(maxBudget),
+                        Integer.parseInt(roommateNum), genderPreference,
+                        housingStyle, startDate, endDate)) {
+                    Toast.makeText(SetUpPreferences.this, "Preferences updated", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SetUpPreferences.this, FindRoommatesActivity.class);
+                    intent.putExtra("email", email);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(SetUpPreferences.this, "Error updating preferences", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

@@ -1,9 +1,14 @@
 package com.cs407.badgerooproject.Setup;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.cs407.badgerooproject.Home.Roommate;
+
+import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper{
 
@@ -127,8 +132,56 @@ public class DBHelper extends SQLiteOpenHelper{
         return numOfRowsUpdated > 0;
     }
 
+    public ArrayList<Roommate> fetchUsers() {
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("select * from users", null);
 
+        int emailIndex = cursor.getColumnIndex(COLUMN_EMAIL);
+        int fullNameIndex = cursor.getColumnIndex(COLUMN_FULL_NAME);
+        int profilePictureIndex = cursor.getColumnIndex(COLUMN_PROFILE_PICTURE);
+        int ageIndex = cursor.getColumnIndex(COLUMN_AGE);
+        int genderIndex = cursor.getColumnIndex(COLUMN_GENDER);
+        int bioIndex = cursor.getColumnIndex(COLUMN_BIO);
+        int minRentIndex = cursor.getColumnIndex(COLUMN_MIN_RENT);
+        int maxRentIndex = cursor.getColumnIndex(COLUMN_MAX_RENT);
+        int numRoommatesIndex = cursor.getColumnIndex(COLUMN_NUM_ROOMMATES);
+        int roommateGenderIndex = cursor.getColumnIndex(COLUMN_ROOMMATE_GENDER);
+        int locationIndex = cursor.getColumnIndex(COLUMN_DESIRED_LOCATION);
+        int housingIndex = cursor.getColumnIndex(COLUMN_HOUSING_STYLE);
+        int startDateIndex = cursor.getColumnIndex(COLUMN_START_DATE);
+        int endDateIndex = cursor.getColumnIndex(COLUMN_END_DATE);
 
+        cursor.moveToFirst();
+
+        ArrayList<Roommate> roommates = new ArrayList<>();
+
+        while (!cursor.isAfterLast()) {
+            String email = cursor.getString(emailIndex);
+            String fullName = cursor.getString(fullNameIndex);
+            String profilePicture = cursor.getString(profilePictureIndex);
+            int age = cursor.getInt(ageIndex);
+            String gender = cursor.getString(genderIndex);
+            String bio = cursor.getString(bioIndex);
+            double minRent = cursor.getDouble(minRentIndex);
+            double maxRent = cursor.getDouble(maxRentIndex);
+            int numRoommates = cursor.getInt(numRoommatesIndex);
+            String roommateGender = cursor.getString(roommateGenderIndex);
+            String desiredLocation = cursor.getString(locationIndex);
+            String housingStyle = cursor.getString(housingIndex);
+            String startDate = cursor.getString(startDateIndex);
+            String endDate = cursor.getString(endDateIndex);
+
+            roommates.add(new Roommate(email, fullName, profilePicture, age, gender, bio,
+                    minRent, maxRent, numRoommates, roommateGender, desiredLocation,
+                    housingStyle, startDate, endDate));
+
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+
+        return roommates;
+    }
 
 }
 
