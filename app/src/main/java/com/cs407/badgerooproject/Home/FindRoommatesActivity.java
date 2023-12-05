@@ -39,7 +39,7 @@ public class FindRoommatesActivity extends AppCompatActivity {
             if (itemId == R.id.nav_home) {
                 replaceFragment(new FindRoommatesFragment());
             } else if (itemId == R.id.nav_messages) {
-                replaceFragment(new MessageFragment());
+                replaceFragment(new MessagesListFragment());
             } else if (itemId == R.id.nav_settings) {
                 replaceFragment(new SettingsFragment());
             } else if (itemId == R.id.nav_edit_profile) {

@@ -1,8 +1,5 @@
 package com.cs407.badgerooproject.Home;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,20 +16,25 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private static final String TAG = "RecyclerViewAdapter";
+//    private static final String TAG = "RecyclerViewAdapter";
 
     private MessageListener mMessageListener;
-    private ArrayList<String> names = new ArrayList<>();
-    private ArrayList<String> pictureURLs = new ArrayList<>();
-    private ArrayList<String> messageButtons = new ArrayList<>();
-    private ArrayList<String> bios = new ArrayList<>();
+//    private ArrayList<String> names;
+//    private ArrayList<String> pictureURLs;
+//    private ArrayList<String> messageButtons;
+//    private ArrayList<String> bios;
 
-    public RecyclerViewAdapter(ArrayList<String> names, ArrayList<String> pictureURLs, ArrayList<String> messageButtons, ArrayList<String> bios, MessageListener messageListener) {
+    private ArrayList<Roommate> roommates;
+
+    public RecyclerViewAdapter(ArrayList<Roommate> roommates,
+            /*ArrayList<String> names, ArrayList<String> pictureURLs, ArrayList<String> messageButtons, ArrayList<String> bios,*/
+                               MessageListener messageListener) {
         this.mMessageListener = messageListener;
-        this.names = names;
-        this.pictureURLs = pictureURLs;
-        this.messageButtons = messageButtons;
-        this.bios = bios;
+//        this.names = names;
+//        this.pictureURLs = pictureURLs;
+//        this.messageButtons = messageButtons;
+//        this.bios = bios;
+        this.roommates = roommates;
     }
 
     @NonNull
@@ -44,17 +46,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.name.setText(names.get(position));
-        holder.bio.setText(bios.get(position));
-        holder.messageButton.setText(String.format("Message %s", names.get(position).split(" ")[0]));
+        Roommate currentRoommate = roommates.get(position);
+//        holder.name.setText(names.get(position));
+        holder.name.setText(currentRoommate.getFullName());
+
+//        holder.bio.setText(bios.get(position));
+        holder.bio.setText(currentRoommate.toString());
+
+//        holder.messageButton.setText(String.format("Message %s", names.get(position).split(" ")[0]));
+        holder.messageButton.setText(String.format("Message %s", currentRoommate.getFullName().split(" ")[0]));
+
         holder.messageButton.setOnClickListener(v -> {
-            mMessageListener.onButtonClick(position);
+            mMessageListener.onButtonClick(currentRoommate.getEmail());
         });
     }
 
     @Override
     public int getItemCount() {
-        return names.size();
+        return roommates.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -78,6 +87,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public interface MessageListener {
-        void onButtonClick(int position);
+        void onButtonClick(String email);
     }
 }

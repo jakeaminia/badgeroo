@@ -25,10 +25,6 @@ import java.util.ArrayList;
 public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapter.MessageListener {
 
     private ArrayList<Roommate> roommates;
-    private ArrayList<String> names = new ArrayList<>();
-    private ArrayList<String> pictureURLs = new ArrayList<>();
-    private ArrayList<String> messageButtons = new ArrayList<>();
-    private ArrayList<String> bios = new ArrayList<>();
 
     View currentView;
 
@@ -41,14 +37,7 @@ public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapt
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView recyclerView = currentView.findViewById(R.id.roommatesRecyclerView);
         recyclerView.setLayoutManager(layoutManager);
-        for (Roommate roommate: roommates) {
-            names.add(roommate.getFullName());
-            pictureURLs.add(roommate.getProfilePicture());
-            bios.add(roommate.getBio());
-        }
-
-        //RecyclerViewAdapter adapter = new RecyclerViewAdapter(roommates, (RecyclerViewAdapter.MessageListener) this);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(names, pictureURLs, messageButtons, bios, (RecyclerViewAdapter.MessageListener) this);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(roommates, (RecyclerViewAdapter.MessageListener) this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -66,7 +55,7 @@ public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapt
 
 
     @Override
-    public void onButtonClick(int position) {
+    public void onButtonClick(String email) {
         //TODO: implement functionality to start a conversation with this specific user
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.HomeFragmentContainer, new MessageFragment()).commit();
     }
