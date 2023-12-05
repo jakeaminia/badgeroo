@@ -29,35 +29,50 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="242dp"
+        android:layout_height="214dp"
         android:layout_centerInParent="true"
         android:src="@drawable/bucky"
         app:civ_border_color="#FF000000"
         app:civ_border_width="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/preference_toolbar"
-        app:layout_constraintVertical_bias="0.264" />
+        app:layout_constraintVertical_bias="0.101" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/photo_img"
-        android:layout_width="69dp"
-        android:layout_height="70dp"
+        android:layout_width="59dp"
+        android:layout_height="48dp"
         android:src="@drawable/insert_photo_ic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/circleImageView"
-        app:layout_constraintVertical_bias="0.27" />
+        app:layout_constraintVertical_bias="0.085" />
+
+
+    <EditText
+        android:id="@+id/bio_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tell us about yourself"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/photo_img"
+        app:layout_constraintVertical_bias="0.273" />
 
     <ImageButton
         android:id="@+id/arrow_btn_picture"
         android:layout_width="59dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="40dp"
         android:src="@drawable/baseline_arrow_forward_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -114,7 +114,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="248dp"
         android:text="Roommate Gender"
-        app:layout_constraintEnd_toStartOf="@+id/gender_rdg"
+        app:layout_constraintEnd_toStartOf="@+id/gender_rdg_preferences"
         app:layout_constraintHorizontal_bias="0.252"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -136,7 +136,7 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/gender_rdg"
+        app:layout_constraintBottom_toTopOf="@+id/gender_rdg_preferences"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.747"
         app:layout_constraintStart_toStartOf="parent" />
@@ -146,10 +146,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="100dp"
         android:text="Desired Location"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintHorizontal_bias="0.164"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roommate_gender_txt" />
 
@@ -157,10 +157,10 @@
         android:id="@+id/map_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="112dp"
         android:src="@drawable/baseline_map_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.677"
+        app:layout_constraintHorizontal_bias="0.697"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roommate_gender_txt" />
 
@@ -168,8 +168,8 @@
         android:id="@+id/housing_style_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="52dp"
         android:text="Housing Style"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/location_txt" />
@@ -180,11 +180,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="52dp"
         android:text="Length of Stay"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/date_start_edit"
-        app:layout_constraintHorizontal_bias="0.642"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
@@ -206,11 +206,11 @@
         style="@style/CustomTextViewStyle"
         android:layout_width="105dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="40dp"
         android:hint="MM/YYYY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -218,28 +218,28 @@
         style="@style/CustomTextViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="40dp"
         android:hint="MM/YYYY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.921"
+        app:layout_constraintHorizontal_bias="0.886"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/to2_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="52dp"
         android:text="to"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.681"
+        app:layout_constraintHorizontal_bias="0.64"
         app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
         android:id="@+id/housing_rdg"
-        android:layout_width="127dp"
-        android:layout_height="145dp"
+        android:layout_width="106dp"
+        android:layout_height="132dp"
         android:layout_marginStart="27dp"
         android:layout_marginTop="47dp"
         android:layout_marginEnd="28dp"
@@ -250,7 +250,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/location_txt"
         app:layout_constraintTop_toTopOf="@+id/location_txt"
-        app:layout_constraintVertical_bias="0.923">
+        app:layout_constraintVertical_bias="0.523">
 
         <RadioButton
             android:id="@+id/apartment_rd"
@@ -262,7 +262,7 @@
             tools:layout_editor_absoluteY="406dp" />
 
         <RadioButton
-            android:id="@+id/house"
+            android:id="@+id/house_rd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="0dp"
@@ -281,11 +281,11 @@
     </RadioGroup>
 
     <RadioGroup
-        android:id="@+id/gender_rdg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="40dp"
+        android:id="@+id/gender_rdg_preferences"
+        android:layout_width="98dp"
+        android:layout_height="128dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="36dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/num_of_roommates_txt">
@@ -319,10 +319,10 @@
     </RadioGroup>
 
     <ImageButton
-        android:id="@+id/arrow_btn_preferences"
+        android:id="@+id/arrow_byn_preference"
         android:layout_width="60dp"
         android:layout_height="36dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/baseline_arrow_forward_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

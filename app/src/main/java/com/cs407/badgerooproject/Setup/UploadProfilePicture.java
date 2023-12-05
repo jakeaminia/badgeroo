@@ -18,12 +18,14 @@ public class UploadProfilePicture extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_profile_picture);
+        String email = getIntent().getStringExtra("email");
         arrow_btn = findViewById(R.id.arrow_btn_picture);
 
         arrow_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(UploadProfilePicture.this, SetUpPreferences.class);
+                intent.putExtra("email", email);
                 startActivity(intent);
             }
         });

@@ -109,7 +109,7 @@ public class DBHelper extends SQLiteOpenHelper{
     }
 
     public boolean updatePreferences(String email, double minRent, double maxRent, int numRoommates,
-                                         String roommateGender, String desiredLocation, String housingStyle,
+                                         String roommateGender, String housingStyle,
                                          String startDate, String endDate) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -117,7 +117,7 @@ public class DBHelper extends SQLiteOpenHelper{
         values.put(COLUMN_MAX_RENT, maxRent);
         values.put(COLUMN_NUM_ROOMMATES, numRoommates);
         values.put(COLUMN_ROOMMATE_GENDER, roommateGender);
-        values.put(COLUMN_DESIRED_LOCATION, desiredLocation);
+        //values.put(COLUMN_DESIRED_LOCATION, desiredLocation);
         values.put(COLUMN_HOUSING_STYLE, housingStyle);
         values.put(COLUMN_START_DATE, startDate);
         values.put(COLUMN_END_DATE, endDate);
