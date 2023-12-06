@@ -13,6 +13,12 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.cs407.badgerooproject.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class NameAndGender extends AppCompatActivity {
 
@@ -26,8 +32,10 @@ public class NameAndGender extends AppCompatActivity {
         setContentView(R.layout.activity_name_and_gender);
 
         String email = getIntent().getStringExtra("email");
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Map<String, Object> userProfile = new HashMap<>();
 
-        DBHelper dbHelper = new DBHelper(this);
 
         name_edt = findViewById(R.id.fullName_edt);
         gender_rdg = findViewById(R.id.gender_rdg_fullName);
@@ -48,17 +56,20 @@ public class NameAndGender extends AppCompatActivity {
                 else{
                     RadioButton selectedRadioButton = findViewById(selectedId);
                     String gender = selectedRadioButton.getText().toString();
-                    dbHelper.insertBasicDetails(email, name, gender);
-                    Intent intent = new Intent(NameAndGender.this, UploadProfilePicture.class);
-                    intent.putExtra("email", email);
-                    startActivity(intent);
+                    userProfile.put("Name", name);
+                    userProfile.put("Gender", gender);
+
+                    firestore.collection("users").document(userID).set(userProfile, SetOptions.merge())
+                            .addOnSuccessListener(aVoid -> {
+                                Intent intent = new Intent(NameAndGender.this, UploadProfilePicture.class);
+                                Toast.makeText(NameAndGender.this, "Added Successfully", Toast.LENGTH_LONG).show();
+                                startActivity(intent);
+                            }).addOnFailureListener(e -> {
+                                Toast.makeText(NameAndGender.this, "Failed to add", Toast.LENGTH_LONG).show();
+                            });
                 }
             }
         });
-
-
-
-
 
 
     }

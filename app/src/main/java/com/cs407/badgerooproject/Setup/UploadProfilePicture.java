@@ -25,7 +25,6 @@ public class UploadProfilePicture extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(UploadProfilePicture.this, SetUpPreferences.class);
-                intent.putExtra("email", email);
                 startActivity(intent);
             }
         });

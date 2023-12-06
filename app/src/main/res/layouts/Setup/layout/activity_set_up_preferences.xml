@@ -153,16 +153,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roommate_gender_txt" />
 
-    <ImageView
-        android:id="@+id/map_image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:src="@drawable/baseline_map_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.697"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roommate_gender_txt" />
 
     <TextView
         android:id="@+id/housing_style_txt"
