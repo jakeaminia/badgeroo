@@ -17,11 +17,7 @@ import android.view.ViewGroup;
 import com.cs407.badgerooproject.R;
 import com.cs407.badgerooproject.Setup.DBHelper;
 
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 
 // Activity: FindRoommatesActivity
 
@@ -49,22 +45,9 @@ public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapt
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         currentView = inflater.inflate(R.layout.fragment_find_roommates, container, false);
+        DBHelper dbHelper = new DBHelper(currentView.getContext());
 
-        FirebaseFirestore firestoreDatabase = FirebaseFirestore.getInstance();
-
-        firestoreDatabase.collection("users").get().addOnCompleteListener((task) -> {
-            if (task.isSuccessful()) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    //TODO: don't show the user himself as a potential roommate
-                    roommates.add(new Roommate((HashMap<String, Object>) document.getData()));
-                }
-            }
-        });
-
-
-
-//        DBHelper dbHelper = new DBHelper(currentView.getContext());
-//        roommates = dbHelper.fetchUsers();
+        roommates = dbHelper.fetchUsers();
 
         initRecyclerView();
         return currentView;
