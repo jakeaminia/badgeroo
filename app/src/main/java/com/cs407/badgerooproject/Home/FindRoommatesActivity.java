@@ -17,10 +17,16 @@ import android.view.MenuItem;
 import com.cs407.badgerooproject.Login.LoginActivity;
 import com.cs407.badgerooproject.R;
 import com.cs407.badgerooproject.databinding.ActivityFindRoommatesBinding;
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 // Fragments: FindRoommatesFragment, SettingsFragment, EditProfileFragment, MessagesListFragment, MessageFragment
 
 public class FindRoommatesActivity extends AppCompatActivity {
+
+    FirebaseAuth auth;
+    FirebaseUser user;
 
     ActivityFindRoommatesBinding binding;
 
@@ -29,6 +35,14 @@ public class FindRoommatesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityFindRoommatesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+        if (user == null){
+            Intent intent = new Intent(FindRoommatesActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         replaceFragment(new FindRoommatesFragment());
         binding.bottomNavigationView.setBackground(null);
@@ -45,6 +59,8 @@ public class FindRoommatesActivity extends AppCompatActivity {
             } else if (itemId == R.id.nav_edit_profile) {
                 replaceFragment(new EditProfileFragment());
             } else if (itemId == R.id.logout) {
+
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
             }
