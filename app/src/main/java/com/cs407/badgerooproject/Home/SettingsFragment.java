@@ -37,12 +37,8 @@ public class SettingsFragment extends Fragment {
         listParents = new ArrayList<>();
         listChildren = new HashMap<>();
 
-        listParents.add("Privacy & Security");
         listParents.add("Change Password");
         listParents.add("Delete Account");
-
-        ArrayList<String> children1 = new ArrayList<>();
-        children1.add("Privacy & Security");
 
         ArrayList<String> children2 = new ArrayList<>();
         children2.add("Change Password");
@@ -50,8 +46,6 @@ public class SettingsFragment extends Fragment {
         ArrayList<String> children3 = new ArrayList<>();
         children3.add("Delete Account");
 
-
-        listChildren.put(listParents.get(0), children1);
         listChildren.put(listParents.get(1), children2);
         listChildren.put(listParents.get(2), children3);
     }

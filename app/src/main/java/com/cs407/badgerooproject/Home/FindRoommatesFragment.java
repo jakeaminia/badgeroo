@@ -41,6 +41,7 @@ public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapt
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView recyclerView = currentView.findViewById(R.id.roommatesRecyclerView);
         recyclerView.setLayoutManager(layoutManager);
+        Log.i("SIZE BEFORE", String.valueOf(roommates.size()));
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(roommates, (RecyclerViewAdapter.MessageListener) this);
         recyclerView.setAdapter(adapter);
     }
@@ -62,9 +63,9 @@ public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapt
                     roommates.add(new Roommate((HashMap<String, Object>) document.getData()));
                 }
             }
+            initRecyclerView();
+            Log.i("SIZE AFTER", String.valueOf(roommates.size()));
         });
-
-        initRecyclerView();
         return currentView;
     }
 
