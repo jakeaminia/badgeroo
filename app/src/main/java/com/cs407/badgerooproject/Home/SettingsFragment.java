@@ -37,32 +37,23 @@ public class SettingsFragment extends Fragment {
         listParents = new ArrayList<>();
         listChildren = new HashMap<>();
 
-        listParents.add("parent 1");
-        listParents.add("parent 2");
-        listParents.add("parent 3");
-        listParents.add("parent 4");
-        listParents.add("parent 5");
+        listParents.add("Privacy & Security");
+        listParents.add("Change Password");
+        listParents.add("Delete Account");
 
         ArrayList<String> children1 = new ArrayList<>();
-        children1.add("Child 1");
+        children1.add("Privacy & Security");
 
         ArrayList<String> children2 = new ArrayList<>();
-        children2.add("Child 2");
+        children2.add("Change Password");
 
         ArrayList<String> children3 = new ArrayList<>();
-        children3.add("Child 3");
+        children3.add("Delete Account");
 
-        ArrayList<String> children4 = new ArrayList<>();
-        children4.add("Child 4");
-
-        ArrayList<String> children5 = new ArrayList<>();
-        children5.add("Child 5");
 
         listChildren.put(listParents.get(0), children1);
         listChildren.put(listParents.get(1), children2);
         listChildren.put(listParents.get(2), children3);
-        listChildren.put(listParents.get(3), children4);
-        listChildren.put(listParents.get(4), children5);
     }
 
     @Override
