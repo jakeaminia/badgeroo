@@ -28,13 +28,24 @@ import java.util.HashMap;
 
 public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapter.MessageListener {
 
-    private ArrayList<Roommate> roommates;
+    private final ArrayList<Roommate> roommates = new ArrayList<>();
 
     View currentView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        FirebaseFirestore firestoreDatabase = FirebaseFirestore.getInstance();
+
+        firestoreDatabase.collection("users").get().addOnCompleteListener((task) -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    //TODO: don't show the user himself as a potential roommate
+                    roommates.add(new Roommate((HashMap<String, Object>) document.getData()));
+                }
+            }
+        });
     }
 
     private void initRecyclerView() {
@@ -49,19 +60,6 @@ public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapt
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         currentView = inflater.inflate(R.layout.fragment_find_roommates, container, false);
-
-        FirebaseFirestore firestoreDatabase = FirebaseFirestore.getInstance();
-
-        firestoreDatabase.collection("users").get().addOnCompleteListener((task) -> {
-            if (task.isSuccessful()) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    //TODO: don't show the user himself as a potential roommate
-                    roommates.add(new Roommate((HashMap<String, Object>) document.getData()));
-                }
-            }
-        });
-
-
 
 //        DBHelper dbHelper = new DBHelper(currentView.getContext());
 //        roommates = dbHelper.fetchUsers();
