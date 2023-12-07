@@ -27,7 +27,7 @@
             android:fontFamily="sans-serif-medium"
             android:text="Set Your Preferences"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            android:textSize="30dp"
+            android:textSize="30sp"
             />  <!-- Reference your custom font here -->
 
     </androidx.appcompat.widget.Toolbar>
@@ -36,297 +36,206 @@
         android:id="@+id/budget_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Budget Per Month"
-        android:layout_marginLeft="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        android:text="Budget Per Month:"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="180dp"
+        app:layout_constraintTop_toBottomOf="@id/preference_toolbar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.202" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/dollar1_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-
         android:text="$"
-        app:layout_constraintBottom_toBottomOf="@+id/budget_start_edt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.103"
-        app:layout_constraintStart_toEndOf="@+id/budget_txt" />
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toTopOf="@id/budget_txt"
+        app:layout_constraintStart_toEndOf="@id/budget_txt" />
 
     <EditText
         android:id="@+id/budget_start_edt"
-        android:layout_width="60dp"
-
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/num_of_roommates_edt"
-        app:layout_constraintEnd_toStartOf="@+id/dollar2_txt"
-        app:layout_constraintHorizontal_bias="0.425"
-        app:layout_constraintStart_toEndOf="@+id/budget_txt"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.926" />
+        android:layout_marginStart="5dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/dollar1_txt"
+        app:layout_constraintStart_toEndOf="@id/dollar1_txt" />
 
     <TextView
         android:id="@+id/to_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="to"
-
-        app:layout_constraintBottom_toTopOf="@+id/num_of_roommates_edt"
-        app:layout_constraintEnd_toStartOf="@+id/dollar2_txt"
-        app:layout_constraintHorizontal_bias="0.942"
-        app:layout_constraintStart_toEndOf="@+id/budget_txt"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.883" />
+        android:layout_marginStart="10dp"
+        app:layout_constraintTop_toTopOf="@id/budget_txt"
+        app:layout_constraintStart_toEndOf="@id/budget_start_edt" />
 
     <TextView
         android:id="@+id/dollar2_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="$"
-
-        app:layout_constraintBottom_toTopOf="@+id/num_of_roommates_edt"
-        app:layout_constraintEnd_toStartOf="@+id/budget_end_edt"
-        app:layout_constraintHorizontal_bias="0.952"
-        app:layout_constraintStart_toEndOf="@+id/budget_txt"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.877" />
+        android:layout_marginStart="10dp"
+        app:layout_constraintTop_toTopOf="@id/budget_txt"
+        app:layout_constraintStart_toEndOf="@id/to_txt" />
 
     <EditText
         android:id="@+id/budget_end_edt"
-        android:layout_width="60dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-
-        app:layout_constraintBottom_toTopOf="@+id/num_of_roommates_edt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
-        app:layout_constraintStart_toStartOf="@+id/dollar1_txt"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.926" />
-
-    <TextView
-        android:id="@+id/roommate_gender_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="248dp"
-        android:text="Roommate Gender"
-        app:layout_constraintEnd_toStartOf="@+id/gender_rdg_preferences"
-        app:layout_constraintHorizontal_bias="0.252"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="5dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/dollar2_txt"
+        app:layout_constraintStart_toEndOf="@id/dollar2_txt" />
 
     <TextView
         android:id="@+id/num_of_roommates_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="28dp"
-        android:text="Number of Roommates"
-        app:layout_constraintBottom_toTopOf="@+id/roommate_gender_txt"
-        app:layout_constraintEnd_toStartOf="@+id/num_of_roommates_edt"
-        app:layout_constraintHorizontal_bias="0.373"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:text="Number of Roommates:"
+        android:layout_marginTop="45dp"
+        app:layout_constraintTop_toBottomOf="@id/budget_txt"
+        app:layout_constraintStart_toStartOf="@id/budget_txt" />
 
     <EditText
         android:id="@+id/num_of_roommates_edt"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/gender_rdg_preferences"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.747"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginStart="30dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/num_of_roommates_txt"
+        app:layout_constraintStart_toEndOf="@id/num_of_roommates_txt" />
 
     <TextView
-        android:id="@+id/location_txt"
+        android:id="@+id/roommate_gender_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="100dp"
-        android:text="Desired Location"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.164"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roommate_gender_txt" />
-
-    <ImageView
-        android:id="@+id/map_image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:src="@drawable/baseline_map_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.697"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roommate_gender_txt" />
-
-    <TextView
-        android:id="@+id/housing_style_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="52dp"
-        android:text="Housing Style"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location_txt" />
-
-    <TextView
-        android:id="@+id/stay_length_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="52dp"
-        android:text="Length of Stay"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/date_start_edit"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="72dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/to_txt"
-        app:layout_constraintStart_toStartOf="@+id/date_start_edit"
-        app:layout_constraintTop_toBottomOf="@+id/roommate_gender_txt">
-
-    </RadioGroup>
-
-    <EditText
-        android:id="@+id/date_start_edit"
-        style="@style/CustomTextViewStyle"
-        android:layout_width="105dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="40dp"
-        android:hint="MM/YYYY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/date_end_edt"
-        style="@style/CustomTextViewStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:hint="MM/YYYY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.886"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/to2_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
-        android:text="to"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.64"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <RadioGroup
-        android:id="@+id/housing_rdg"
-        android:layout_width="106dp"
-        android:layout_height="132dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="47dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="52dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/to2_txt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/location_txt"
-        app:layout_constraintTop_toTopOf="@+id/location_txt"
-        app:layout_constraintVertical_bias="0.523">
-
-        <RadioButton
-            android:id="@+id/apartment_rd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="0dp"
-            android:text="Apartment"
-            tools:layout_editor_absoluteX="6dp"
-            tools:layout_editor_absoluteY="406dp" />
-
-        <RadioButton
-            android:id="@+id/house_rd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="0dp"
-            android:text="House"
-            tools:layout_editor_absoluteX="137dp"
-            tools:layout_editor_absoluteY="406dp" />
-
-        <RadioButton
-            android:id="@+id/housingBoth_rd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="0dp"
-            android:text="Open to both"
-            tools:layout_editor_absoluteX="230dp"
-            tools:layout_editor_absoluteY="406dp" />
-    </RadioGroup>
+        android:text="Roommate Gender:"
+        android:layout_marginTop="90dp"
+        app:layout_constraintTop_toBottomOf="@id/num_of_roommates_txt"
+        app:layout_constraintStart_toStartOf="@id/budget_txt" />
 
     <RadioGroup
         android:id="@+id/gender_rdg_preferences"
-        android:layout_width="98dp"
-        android:layout_height="128dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="36dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/num_of_roommates_txt">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toTopOf="@+id/num_of_roommates_txt"
+        app:layout_constraintStart_toEndOf="@id/roommate_gender_txt">
 
         <RadioButton
             android:id="@+id/male_rd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="0dp"
-            android:text="Male"
-            tools:layout_editor_absoluteX="6dp"
-            tools:layout_editor_absoluteY="406dp" />
+            android:text="Male" />
 
         <RadioButton
             android:id="@+id/female_rd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="0dp"
-            android:text="Female"
-            tools:layout_editor_absoluteX="137dp"
-            tools:layout_editor_absoluteY="406dp" />
+            android:text="Female" />
 
         <RadioButton
             android:id="@+id/genderBoth_rd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="0dp"
-            android:text="Open to both"
-            tools:layout_editor_absoluteX="230dp"
-            tools:layout_editor_absoluteY="406dp" />
+            android:text="Open to both" />
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/location_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Desired Location:"
+        android:layout_marginTop="85dp"
+        app:layout_constraintTop_toBottomOf="@id/roommate_gender_txt"
+        app:layout_constraintStart_toStartOf="@id/budget_txt" />
+
+    <TextView
+        android:id="@+id/housing_style_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Housing Style:"
+        android:layout_marginTop="90dp"
+        app:layout_constraintTop_toBottomOf="@id/location_txt"
+        app:layout_constraintStart_toStartOf="@id/budget_txt" />
+
+    <RadioGroup
+        android:id="@+id/housing_rdg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        app:layout_constraintTop_toTopOf="@+id/location_txt"
+        app:layout_constraintStart_toStartOf="@id/gender_rdg_preferences"
+        app:layout_constraintStart_toEndOf="@id/housing_style_txt">
+
+        <RadioButton
+            android:id="@+id/apartment_rd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="0dp"
+            android:text="Apartment" />
+
+        <RadioButton
+            android:id="@+id/house_rd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="0dp"
+            android:text="House" />
+
+        <RadioButton
+            android:id="@+id/housingBoth_rd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="0dp"
+            android:text="Open to both" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/stay_length_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:text="Length of Stay:"
+        app:layout_constraintTop_toBottomOf="@id/housing_style_txt"
+        app:layout_constraintStart_toStartOf="@id/budget_txt" />
+
+    <EditText
+        android:id="@+id/date_start_edit"
+        style="@style/CustomTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="MM/YYYY"
+        app:layout_constraintBaseline_toBaselineOf="@id/stay_length_txt"
+        app:layout_constraintStart_toEndOf="@id/stay_length_txt"/>
+
+    <TextView
+        android:id="@+id/to2_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="to"
+        app:layout_constraintTop_toTopOf="@id/stay_length_txt"
+        app:layout_constraintStart_toEndOf="@id/date_start_edit"/>
+
+    <EditText
+        android:id="@+id/date_end_edt"
+        style="@style/CustomTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:hint="MM/YYYY"
+        app:layout_constraintBaseline_toBaselineOf="@id/stay_length_txt"
+        app:layout_constraintStart_toEndOf="@id/to2_txt" />
 
     <ImageButton
         android:id="@+id/arrow_byn_preference"
-        android:layout_width="60dp"
-        android:layout_height="36dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/baseline_arrow_forward_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.931"
-        app:layout_constraintStart_toStartOf="parent"></ImageButton>
+        app:layout_constraintTop_toBottomOf="@id/stay_length_txt"
+        app:layout_constraintEnd_toEndOf="@id/date_end_edt"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

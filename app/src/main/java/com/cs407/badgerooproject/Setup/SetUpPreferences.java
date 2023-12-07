@@ -13,6 +13,12 @@ import android.widget.Toast;
 
 import com.cs407.badgerooproject.Home.FindRoommatesActivity;
 import com.cs407.badgerooproject.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SetUpPreferences extends AppCompatActivity {
     ImageButton arrow_btn;
@@ -37,6 +43,9 @@ public class SetUpPreferences extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_up_preferences);
         String email = getIntent().getStringExtra("email");
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Map<String, Object> userProfile = new HashMap<>();
 
         minBudget_edt = findViewById(R.id.budget_start_edt);
         maxBudget_edt = findViewById(R.id.budget_end_edt);
@@ -109,17 +118,22 @@ public class SetUpPreferences extends AppCompatActivity {
 
 
                 // Update preferences in database
-                DBHelper dbHelper = new DBHelper(SetUpPreferences.this);
-                if(dbHelper.updatePreferences(email, Double.parseDouble(minBudget), Double.parseDouble(maxBudget),
-                        Integer.parseInt(roommateNum), genderPreference,
-                        housingStyle, startDate, endDate)) {
-                    Toast.makeText(SetUpPreferences.this, "Preferences updated", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(SetUpPreferences.this, FindRoommatesActivity.class);
-                    intent.putExtra("email", email);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(SetUpPreferences.this, "Error updating preferences", Toast.LENGTH_SHORT).show();
-                }
+                userProfile.put("minBudget", minBudget);
+                userProfile.put("maxBudget", maxBudget);
+                userProfile.put("roommateNum", roommateNum);
+                userProfile.put("genderPreference", genderPreference);
+                userProfile.put("housingStyle", housingStyle);
+                userProfile.put("startDate", startDate);
+                userProfile.put("endDate", endDate);
+
+                firestore.collection("users").document(userID).set(userProfile, SetOptions.merge())
+                        .addOnSuccessListener(aVoid -> {
+                            Intent intent = new Intent(SetUpPreferences.this, FindRoommatesActivity.class);
+                            Toast.makeText(SetUpPreferences.this, "Added Successfully", Toast.LENGTH_LONG).show();
+                            startActivity(intent);
+                        }).addOnFailureListener(e -> {
+                            Toast.makeText(SetUpPreferences.this, "Failed to add", Toast.LENGTH_LONG).show();
+                        });
             }
         });
 
