@@ -171,7 +171,7 @@ public class DBHelper extends SQLiteOpenHelper{
             String startDate = cursor.getString(startDateIndex);
             String endDate = cursor.getString(endDateIndex);
 
-            roommates.add(new Roommate(email, fullName, profilePicture, age, gender, bio,
+            roommates.add(new Roommate(email, fullName, profilePicture,/* age,*/ gender, bio,
                     minRent, maxRent, numRoommates, roommateGender, desiredLocation,
                     housingStyle, startDate, endDate));
 

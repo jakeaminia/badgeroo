@@ -17,7 +17,11 @@ import android.view.ViewGroup;
 import com.cs407.badgerooproject.R;
 import com.cs407.badgerooproject.Setup.DBHelper;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 // Activity: FindRoommatesActivity
 
@@ -37,6 +41,7 @@ public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapt
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView recyclerView = currentView.findViewById(R.id.roommatesRecyclerView);
         recyclerView.setLayoutManager(layoutManager);
+        Log.i("SIZE BEFORE", String.valueOf(roommates.size()));
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(roommates, (RecyclerViewAdapter.MessageListener) this);
         recyclerView.setAdapter(adapter);
     }
@@ -45,11 +50,22 @@ public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapt
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         currentView = inflater.inflate(R.layout.fragment_find_roommates, container, false);
-        DBHelper dbHelper = new DBHelper(currentView.getContext());
 
-        roommates = dbHelper.fetchUsers();
+//        DBHelper dbHelper = new DBHelper(currentView.getContext());
+//        roommates = dbHelper.fetchUsers();
+        roommates = new ArrayList<>();
+        FirebaseFirestore firestoreDatabase = FirebaseFirestore.getInstance();
 
-        initRecyclerView();
+        firestoreDatabase.collection("users").get().addOnCompleteListener((task) -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    //TODO: don't show the user himself as a potential roommate
+                    roommates.add(new Roommate((HashMap<String, Object>) document.getData()));
+                }
+            }
+            initRecyclerView();
+            Log.i("SIZE AFTER", String.valueOf(roommates.size()));
+        });
         return currentView;
     }
 
