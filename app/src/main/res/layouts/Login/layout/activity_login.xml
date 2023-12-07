@@ -26,18 +26,31 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/login_image"
+        android:layout_width="242dp"
+        android:layout_height="214dp"
+        android:layout_marginTop="60dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/bucky"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="4dp"
+        app:layout_constraintTop_toBottomOf="@id/login_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <EditText
         android:id="@+id/login_email"
         android:layout_width="350dp"
         android:layout_height="40dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/login_edt_background"
         android:drawableStart="@drawable/login_email_icon"
         android:drawablePadding="10dp"
         android:hint="Email / Phone number"
         android:textColorHint="@color/black"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/login_toolbar"
+        app:layout_constraintTop_toBottomOf="@id/login_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -45,7 +58,7 @@
         android:id="@+id/login_password"
         android:layout_width="350dp"
         android:layout_height="40dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/login_edt_background"
         android:drawableStart="@drawable/login_password_icon"
         android:drawablePadding="10dp"
@@ -60,7 +73,7 @@
         android:id="@+id/goto_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="80dp"
         android:text="New here? Register"
         android:textColor="@color/red"
         android:background="?android:attr/selectableItemBackground"
@@ -84,11 +97,11 @@
         android:id="@+id/goto_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="Login"
         android:backgroundTint="@color/red"
-        android:layout_marginBottom="300dp"
+        app:layout_constraintTop_toBottomOf="@id/goto_register"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
