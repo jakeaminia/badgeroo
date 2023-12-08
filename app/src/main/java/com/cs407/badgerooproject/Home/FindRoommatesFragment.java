@@ -42,7 +42,7 @@ public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapt
         RecyclerView recyclerView = currentView.findViewById(R.id.roommatesRecyclerView);
         recyclerView.setLayoutManager(layoutManager);
         Log.i("SIZE BEFORE", String.valueOf(roommates.size()));
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(roommates, (RecyclerViewAdapter.MessageListener) this);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(roommates, this);
         recyclerView.setAdapter(adapter);
     }
 
