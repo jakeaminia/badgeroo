@@ -1,6 +1,7 @@
 package com.cs407.badgerooproject.Home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +9,11 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.cs407.badgerooproject.Login.ForgotPassword;
+import com.cs407.badgerooproject.Login.LoginActivity;
 import com.cs407.badgerooproject.R;
+import com.cs407.badgerooproject.Setup.SetUpPreferences;
+import com.cs407.badgerooproject.Setup.UploadProfilePicture;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,13 +24,11 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     private ArrayList<String> listParents;
     private HashMap<String, String> listChildren;
 
-    private ButtonListener buttonListener;
 
-    public ExpandableListViewAdapter(Context context, ArrayList<String> listParents, HashMap<String, String> listChildren, ButtonListener buttonListener) {
+    public ExpandableListViewAdapter(Context context, ArrayList<String> listParents, HashMap<String, String> listChildren) {
         this.context = context;
         this.listParents = listParents;
         this.listChildren = listChildren;
-        this.buttonListener = buttonListener;
     }
 
     @Override
@@ -90,9 +93,22 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
         Button listChild = convertView.findViewById(R.id.button2);
         listChild.setText(childTitle);
-        listChild.setOnClickListener((view) -> {
-            buttonListener.onButtonClick(childTitle);
-        });
+        switch (childTitle) {
+            case "Change Password":
+                listChild.setOnClickListener((view) -> context.startActivity(new Intent(context, ForgotPassword.class)));
+                break;
+            case "Delete Account":
+                listChild.setOnClickListener((view) -> context.startActivity(new Intent(context, LoginActivity.class)));
+                //TODO: delete from firebase
+                break;
+            case "Edit Preferences":
+                listChild.setOnClickListener((view) -> context.startActivity(new Intent(context, SetUpPreferences.class)));
+                break;
+            case "Edit Bio":
+            case "Edit Profile Picture":
+                listChild.setOnClickListener((view) -> context.startActivity(new Intent(context, UploadProfilePicture.class)));
+                break;
+        }
 
         return convertView;
     }
@@ -102,7 +118,4 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
-    public interface ButtonListener {
-        void onButtonClick(String buttonName);
-    }
 }

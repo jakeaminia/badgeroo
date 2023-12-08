@@ -21,7 +21,7 @@ import java.util.HashMap;
 
 // Activity: FindRoommatesActivity
 
-public class SettingsFragment extends Fragment implements ExpandableListViewAdapter.ButtonListener {
+public class SettingsFragment extends Fragment {
 
     View currentView;
     ExpandableListViewAdapter viewAdapter;
@@ -57,26 +57,9 @@ public class SettingsFragment extends Fragment implements ExpandableListViewAdap
 
         showList();
 
-        viewAdapter = new ExpandableListViewAdapter(getContext(), listParents, listChildren, this);
+        viewAdapter = new ExpandableListViewAdapter(getContext(), listParents, listChildren);
         expandableListView.setAdapter(viewAdapter);
 
         return currentView;
-    }
-
-    @Override
-    public void onButtonClick(String buttonName) {
-        Intent intent;
-        switch (buttonName) {
-            case "Change Password":
-                intent = new Intent(getContext(), ForgotPassword.class);
-                startActivity(intent);
-                break;
-            case "Delete Account":
-                intent = new Intent(getContext(), LoginActivity.class);
-                startActivity(intent);
-                //TODO: delete account from firebase
-                break;
-        }
-
     }
 }

@@ -21,7 +21,7 @@ import java.util.HashMap;
 
 // Activity: FindRoommatesActivity
 
-public class EditProfileFragment extends Fragment implements ExpandableListViewAdapter.ButtonListener {
+public class EditProfileFragment extends Fragment {
 
     View currentView;
     ExpandableListViewAdapter viewAdapter;
@@ -59,25 +59,9 @@ public class EditProfileFragment extends Fragment implements ExpandableListViewA
 
         showList();
 
-        viewAdapter = new ExpandableListViewAdapter(getContext(), listParents, listChildren, this);
+        viewAdapter = new ExpandableListViewAdapter(getContext(), listParents, listChildren);
         expandableListView.setAdapter(viewAdapter);
 
         return currentView;
-    }
-
-    @Override
-    public void onButtonClick(String buttonName) {
-        Intent intent;
-        switch (buttonName) {
-            case "Edit Preferences":
-                intent = new Intent(getContext(), SetUpPreferences.class);
-                startActivity(intent);
-                break;
-            case "Edit Bio":
-            case "Edit Profile Picture":
-                intent = new Intent(getContext(), UploadProfilePicture.class);
-                startActivity(intent);
-                break;
-        }
     }
 }
