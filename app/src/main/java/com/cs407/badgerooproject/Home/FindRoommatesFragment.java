@@ -67,6 +67,7 @@ public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapt
                     HashMap<String, Object> documentData = (HashMap<String, Object>) document.getData();
                     if (!document.getId().equals(currentUserID)
                             && (Objects.equals(documentData.get("Gender"), currentUserData.get("genderPreference")) || Objects.equals(currentUserData.get("genderPreference"), "Both Male and Female"))
+                            && (Objects.equals(currentUserData.get("Gender"), documentData.get("genderPreference")) || Objects.equals(documentData.get("genderPreference"), "Both Male and Female"))
                             && (Objects.equals(documentData.get("housingStyle"), "Both Apartment and House") || Objects.equals(currentUserData.get("housingStyle"), "Both Apartment and House") || Objects.equals(documentData.get("housingStyle"), currentUserData.get("housingStyle")))) {
                         roommates.add(new Roommate(documentData));
                     }
