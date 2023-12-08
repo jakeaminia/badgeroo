@@ -1,5 +1,6 @@
 package com.cs407.badgerooproject.Home;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
 import com.cs407.badgerooproject.R;
+import com.cs407.badgerooproject.Setup.SetUpPreferences;
+import com.cs407.badgerooproject.Setup.UploadProfilePicture;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,10 +24,10 @@ import java.util.HashMap;
 public class EditProfileFragment extends Fragment {
 
     View currentView;
-    ExpandableListViewAdapterSettings viewAdapter;
+    ExpandableListViewAdapter viewAdapter;
     ExpandableListView expandableListView;
     ArrayList<String> listParents;
-    HashMap<String, ArrayList<String>> listChildren;
+    HashMap<String, String> listChildren;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,19 +44,9 @@ public class EditProfileFragment extends Fragment {
         listParents.add("Edit Bio");
         listParents.add("Edit Profile Picture");
 
-        ArrayList<String> children1 = new ArrayList<>();
-        children1.add("Edit Preferences");
-
-        ArrayList<String> children2 = new ArrayList<>();
-        children2.add("Edit Bio");
-
-        ArrayList<String> children3 = new ArrayList<>();
-        children3.add("Edit Profile Picture");
-
-
-        listChildren.put(listParents.get(0), children1);
-        listChildren.put(listParents.get(1), children2);
-        listChildren.put(listParents.get(2), children3);
+        listChildren.put(listParents.get(0), "Edit Preferences");
+        listChildren.put(listParents.get(1), "Edit Bio");
+        listChildren.put(listParents.get(2), "Edit Profile Picture");
     }
 
     @Override
@@ -66,7 +59,7 @@ public class EditProfileFragment extends Fragment {
 
         showList();
 
-        viewAdapter = new ExpandableListViewAdapterSettings(getContext(), listParents, listChildren);
+        viewAdapter = new ExpandableListViewAdapter(getContext(), listParents, listChildren);
         expandableListView.setAdapter(viewAdapter);
 
         return currentView;

@@ -16,24 +16,12 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-//    private static final String TAG = "RecyclerViewAdapter";
-
     private MessageListener mMessageListener;
-//    private ArrayList<String> names;
-//    private ArrayList<String> pictureURLs;
-//    private ArrayList<String> messageButtons;
-//    private ArrayList<String> bios;
 
     private ArrayList<Roommate> roommates;
 
-    public RecyclerViewAdapter(ArrayList<Roommate> roommates,
-            /*ArrayList<String> names, ArrayList<String> pictureURLs, ArrayList<String> messageButtons, ArrayList<String> bios,*/
-                               MessageListener messageListener) {
+    public RecyclerViewAdapter(ArrayList<Roommate> roommates, MessageListener messageListener) {
         this.mMessageListener = messageListener;
-//        this.names = names;
-//        this.pictureURLs = pictureURLs;
-//        this.messageButtons = messageButtons;
-//        this.bios = bios;
         this.roommates = roommates;
     }
 
@@ -47,13 +35,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Roommate currentRoommate = roommates.get(position);
-//        holder.name.setText(names.get(position));
+
         holder.name.setText(currentRoommate.getFullName());
 
-//        holder.bio.setText(bios.get(position));
         holder.bio.setText(currentRoommate.toString());
 
-//        holder.messageButton.setText(String.format("Message %s", names.get(position).split(" ")[0]));
         holder.messageButton.setText(String.format("Message %s", currentRoommate.getFullName().split(" ")[0]));
 
         holder.messageButton.setOnClickListener(v -> {

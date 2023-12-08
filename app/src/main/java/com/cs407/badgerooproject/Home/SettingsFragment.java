@@ -1,5 +1,6 @@
 package com.cs407.badgerooproject.Home;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
+import com.cs407.badgerooproject.Login.ForgotPassword;
+import com.cs407.badgerooproject.Login.LoginActivity;
 import com.cs407.badgerooproject.R;
 
 import java.util.ArrayList;
@@ -21,10 +24,10 @@ import java.util.HashMap;
 public class SettingsFragment extends Fragment {
 
     View currentView;
-    ExpandableListViewAdapterSettings viewAdapter;
+    ExpandableListViewAdapter viewAdapter;
     ExpandableListView expandableListView;
     ArrayList<String> listParents;
-    HashMap<String, ArrayList<String>> listChildren;
+    HashMap<String, String> listChildren;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,14 +43,8 @@ public class SettingsFragment extends Fragment {
         listParents.add("Change Password");
         listParents.add("Delete Account");
 
-        ArrayList<String> children2 = new ArrayList<>();
-        children2.add("Change Password");
-
-        ArrayList<String> children3 = new ArrayList<>();
-        children3.add("Delete Account");
-
-        listChildren.put(listParents.get(1), children2);
-        listChildren.put(listParents.get(2), children3);
+        listChildren.put(listParents.get(0), "Change Password");
+        listChildren.put(listParents.get(1), "Delete Account");
     }
 
     @Override
@@ -60,7 +57,7 @@ public class SettingsFragment extends Fragment {
 
         showList();
 
-        viewAdapter = new ExpandableListViewAdapterSettings(getContext(), listParents, listChildren);
+        viewAdapter = new ExpandableListViewAdapter(getContext(), listParents, listChildren);
         expandableListView.setAdapter(viewAdapter);
 
         return currentView;
