@@ -1,6 +1,8 @@
 package com.cs407.badgerooproject.Home;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cs407.badgerooproject.R;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
@@ -44,12 +48,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.messageButton.setText(String.format("Message %s", currentRoommate.getFullName().split(" ")[0]));
 
-        if (!currentRoommate.getProfilePicture().isEmpty()) {
-            Glide.with(mMessageListener.getCurrentContext()).load(currentRoommate.getProfilePicture()).into(holder.profilePicture);
+        if (currentRoommate.getProfilePicture() == null || currentRoommate.getProfilePicture().isEmpty() || !currentRoommate.getProfilePicture().startsWith("https://firebasestorage.googleapis.com")) {
+            holder.profilePicture.setImageResource((currentRoommate.getGender().equals("Male"))
+                    ? R.drawable.badger_image_1 : R.drawable.badger_image_2);
+        } else {
+            Glide.with(mMessageListener.getCurrentContext())
+                    .load(currentRoommate.getProfilePicture()).into(holder.profilePicture);
         }
 
         holder.messageButton.setOnClickListener(v -> {
-            mMessageListener.onButtonClick(currentRoommate.getEmail());
+            mMessageListener.onButtonClick(currentRoommate.getId());
         });
     }
 
@@ -79,7 +87,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public interface MessageListener {
-        void onButtonClick(String email);
+        void onButtonClick(String id);
 
         Context getCurrentContext();
     }
