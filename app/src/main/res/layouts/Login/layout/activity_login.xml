@@ -47,9 +47,11 @@
         android:background="@drawable/login_edt_background"
         android:drawableStart="@drawable/login_email_icon"
         android:drawablePadding="10dp"
-        android:hint="Email / Phone number"
+        android:hint="Email"
         android:textColorHint="#B3B3B3"
+        android:inputType="textEmailAddress"
         android:textSize="20sp"
+        android:imeOptions="actionDone"
         app:layout_constraintTop_toBottomOf="@id/login_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -66,6 +68,7 @@
         android:textColorHint="#B3B3B3"
         android:inputType="textPassword"
         android:textSize="20sp"
+        android:imeOptions="actionDone"
         app:layout_constraintTop_toBottomOf="@id/login_email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

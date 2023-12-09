@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.cs407.badgerooproject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         email_edt = findViewById(R.id.email_edt);
-        password_edt = findViewById(R.id.passwrod_edt);
+        password_edt = findViewById(R.id.password_edt);
         reg_btn = findViewById(R.id.register_btn);
 
         //Initialize database
