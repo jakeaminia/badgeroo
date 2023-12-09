@@ -103,6 +103,28 @@ public class SetUpPreferences extends AppCompatActivity {
                     return;
                 }
 
+                // Validating price range
+                if (Integer.parseInt(minBudget) > Integer.parseInt(maxBudget)){
+                    Toast.makeText(SetUpPreferences.this, "Invalid budget range.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                //Validating date range
+                int startYear = Integer.parseInt(startDate.substring(3)) ;
+                int startMonth = Integer.parseInt(startDate.substring(0, 2));
+                int endYear = Integer.parseInt(endDate.substring(3));
+                int endMonth = Integer.parseInt(endDate.substring(0, 2));
+
+                if (startYear > endYear){
+                    Toast.makeText(SetUpPreferences.this, "Invalid date range.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (startYear == endYear && startMonth >= endMonth){
+                    Toast.makeText(SetUpPreferences.this, "Invalid date range.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
                 // Getting values for radio buttons
                 int checkedIdGender = gender_rdg.getCheckedRadioButtonId();
                 String genderPreference = "";

@@ -43,7 +43,7 @@
         app:layout_constraintVertical_bias="0.101" />
 
     <ImageButton
-        android:id="@+id/photo_img"
+        android:id="@+id/upload_btn"
         android:layout_width="59dp"
         android:layout_height="48dp"
         android:src="@drawable/insert_photo_ic"
@@ -65,7 +65,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/photo_img"
+        app:layout_constraintTop_toBottomOf="@+id/upload_btn"
         app:layout_constraintVertical_bias="0.273" />
 
     <ImageButton
