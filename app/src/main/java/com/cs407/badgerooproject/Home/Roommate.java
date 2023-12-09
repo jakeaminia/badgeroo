@@ -54,7 +54,7 @@ public class Roommate {
     public Roommate(HashMap<String, Object> map) {
         this.email = String.valueOf(map.get("email")); // *
         this.fullName = String.valueOf(map.get("Name"));
-        this.profilePicture = String.valueOf(map.get("profilePicture")); // *
+        this.profilePicture = String.valueOf(map.get("imageUrl")); // *
         this.gender = String.valueOf(map.get("Gender"));
         this.bio = String.valueOf(map.get("bio")); // *
         this.minRent = String.valueOf(map.get("minBudget"));
@@ -73,6 +73,10 @@ public class Roommate {
 
     public String getFullName() {
         return fullName;
+    }
+
+    public String getProfilePicture() {
+        return this.profilePicture;
     }
 
     @Override

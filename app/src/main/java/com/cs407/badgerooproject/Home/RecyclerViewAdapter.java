@@ -1,5 +1,6 @@
 package com.cs407.badgerooproject.Home;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.cs407.badgerooproject.R;
 
 import java.util.ArrayList;
@@ -41,6 +43,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.bio.setText(currentRoommate.toString());
 
         holder.messageButton.setText(String.format("Message %s", currentRoommate.getFullName().split(" ")[0]));
+
+        if (!currentRoommate.getProfilePicture().isEmpty()) {
+            Glide.with(mMessageListener.getCurrentContext()).load(currentRoommate.getProfilePicture()).into(holder.profilePicture);
+        }
 
         holder.messageButton.setOnClickListener(v -> {
             mMessageListener.onButtonClick(currentRoommate.getEmail());
@@ -74,5 +80,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public interface MessageListener {
         void onButtonClick(String email);
+
+        Context getCurrentContext();
     }
 }

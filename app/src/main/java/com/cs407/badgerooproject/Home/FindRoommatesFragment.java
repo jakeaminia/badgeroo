@@ -1,5 +1,6 @@
 package com.cs407.badgerooproject.Home;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -28,6 +29,8 @@ import java.util.Objects;
 public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapter.MessageListener {
 
     private ArrayList<Roommate> roommates;
+    FirebaseFirestore firestoreDatabase = FirebaseFirestore.getInstance();
+
 
     View currentView;
 
@@ -52,7 +55,6 @@ public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapt
 //        DBHelper dbHelper = new DBHelper(currentView.getContext());
 //        roommates = dbHelper.fetchUsers();
         roommates = new ArrayList<>();
-        FirebaseFirestore firestoreDatabase = FirebaseFirestore.getInstance();
         String currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         HashMap<String, Object> currentUserData = new HashMap<>();
         firestoreDatabase.collection("users").get().addOnCompleteListener((task) -> {
@@ -83,5 +85,10 @@ public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapt
     public void onButtonClick(String email) {
         //TODO: implement functionality to start a conversation with this specific user
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.HomeFragmentContainer, new MessageFragment()).commit();
+    }
+
+    @Override
+    public Context getCurrentContext() {
+        return getContext();
     }
 }
