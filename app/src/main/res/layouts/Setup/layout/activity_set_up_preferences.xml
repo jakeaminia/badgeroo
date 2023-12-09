@@ -57,6 +57,8 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
+        android:inputType="numberDecimal"
+        android:imeOptions="actionDone"
         app:layout_constraintBaseline_toBaselineOf="@id/dollar1_txt"
         app:layout_constraintStart_toEndOf="@id/dollar1_txt" />
 
@@ -83,6 +85,8 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
+        android:inputType="numberDecimal"
+        android:imeOptions="actionDone"
         app:layout_constraintBaseline_toBaselineOf="@id/dollar2_txt"
         app:layout_constraintStart_toEndOf="@id/dollar2_txt" />
 
@@ -100,6 +104,8 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
+        android:inputType="numberDecimal"
+        android:imeOptions="actionDone"
         app:layout_constraintBaseline_toBaselineOf="@id/num_of_roommates_txt"
         app:layout_constraintStart_toEndOf="@id/num_of_roommates_txt" />
 
@@ -158,8 +164,9 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:inputType="textPostalAddress"
+        android:imeOptions="actionDone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toEndOf="@+id/location_txt"
         app:layout_constraintTop_toBottomOf="@+id/gender_rdg_preferences" />
 
@@ -218,6 +225,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="MM/YYYY"
+        android:textColorHint="#B3B3B3"
+        android:inputType="text"
+        android:imeOptions="actionDone"
         app:layout_constraintBaseline_toBaselineOf="@id/stay_length_txt"
         app:layout_constraintStart_toEndOf="@id/stay_length_txt"/>
 
@@ -237,6 +247,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:hint="MM/YYYY"
+        android:textColorHint="#B3B3B3"
+        android:inputType="text"
+        android:imeOptions="actionDone"
         app:layout_constraintBaseline_toBaselineOf="@id/stay_length_txt"
         app:layout_constraintStart_toEndOf="@id/to2_txt" />
 
