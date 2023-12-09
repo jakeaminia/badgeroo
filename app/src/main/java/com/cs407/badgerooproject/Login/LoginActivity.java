@@ -22,14 +22,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-// Fragments: ForgotPasswordFragment, ChangePasswordFragment
-
 public class LoginActivity extends AppCompatActivity {
 
+    FirebaseAuth auth;
+    Button forgotPassword_btn;
+    Button register;
     Button login_btn;
     EditText email_edt;
     EditText password_edt;
-    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +38,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         auth = FirebaseAuth.getInstance();
+
         email_edt = findViewById(R.id.login_email);
         password_edt = findViewById(R.id.login_password);
-        login_btn = findViewById(R.id.goto_home);
 
-        Button register = findViewById(R.id.goto_register);
+        register = findViewById(R.id.goto_register);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,25 +50,25 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button forgetPassword = findViewById(R.id.goto_forgot_password);
-        forgetPassword.setOnClickListener(new View.OnClickListener() {
+        forgotPassword_btn = findViewById(R.id.goto_forgot_password);
+        forgotPassword_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goToForgotPassword();
             }
         });
 
-
+        login_btn = findViewById(R.id.goto_home);
         login_btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
+
                 String email = email_edt.getText().toString();
-                String password = password_edt.getText().toString().trim();
+                String password = password_edt.getText().toString();
 
                 if (email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "Please enter your email and password", Toast.LENGTH_LONG).show();
-                    return;
                 } else {
                     auth.signInWithEmailAndPassword(email, password)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

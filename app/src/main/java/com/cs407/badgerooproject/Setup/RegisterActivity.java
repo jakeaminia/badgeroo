@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String email = email_edt.getText().toString();
-                String password = password_edt.getText().toString().trim();
+                String password = password_edt.getText().toString();
 
                 if (email.isEmpty() || password.isEmpty()){
                     Toast.makeText(RegisterActivity.this, "Please enter your email and password", Toast.LENGTH_LONG).show();
