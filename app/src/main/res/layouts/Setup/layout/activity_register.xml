@@ -4,72 +4,102 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/register_gradient"
     tools:context=".Setup.RegisterActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/register_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/red"
+        app:layout_constraintTop_toTopOf="parent" >
 
-    <TextView
-        android:id="@+id/register_welcome_msg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register to BadgerRoo!"
-        android:textColor="@color/white"
-        android:textSize="36dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
+        <TextView
+            android:id="@+id/register_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Register to BadgerRoo!"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/house_image"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/house_icon"
+        app:layout_constraintTop_toBottomOf="@id/register_toolbar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.172" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/email_edt"
-        android:layout_width="308dp"
-        android:layout_height="37dp"
-        android:background="@drawable/register_edt_background"
-        android:drawableLeft="@drawable/email_ic"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/login_edt_background"
+        android:drawableStart="@drawable/login_email_icon"
         android:drawablePadding="10dp"
-        android:hint="Email / Phone number"
-        android:textColorHint="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.592"
+        android:hint="Email"
+        android:textColorHint="#B3B3B3"
+        android:inputType="textEmailAddress"
+        android:textSize="20sp"
+        android:imeOptions="actionDone"
+        app:layout_constraintTop_toBottomOf="@id/house_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_welcome_msg"
-        app:layout_constraintVertical_bias="0.223"></EditText>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/passwrod_edt"
-        android:layout_width="308dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="320dp"
-        android:background="@drawable/register_edt_background"
-        android:drawableLeft="@drawable/password_ic"
+        android:id="@+id/password_edt"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/login_edt_background"
+        android:drawableStart="@drawable/login_password_icon"
+        android:drawableEnd="@drawable/password_hide_icon"
+        android:paddingRight="15dp"
         android:drawablePadding="10dp"
         android:hint="Password"
-        android:textColorHint="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.592"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColorHint="#B3B3B3"
+        android:inputType="textPassword"
+        android:textSize="20sp"
+        android:imeOptions="actionDone"
+        app:layout_constraintTop_toBottomOf="@id/email_edt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/confirm_password_edt"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/login_edt_background"
+        android:drawableStart="@drawable/login_password_icon"
+        android:drawableEnd="@drawable/password_hide_icon"
+        android:paddingRight="15dp"
+        android:drawablePadding="10dp"
+        android:hint="Confirm Password"
+        android:textColorHint="#B3B3B3"
+        android:inputType="textPassword"
+        android:textSize="20sp"
+        android:imeOptions="actionDone"
+        app:layout_constraintTop_toBottomOf="@id/password_edt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/register_btn"
-        android:layout_width="193dp"
-        android:layout_height="55dp"
-        android:backgroundTint="@color/white"
-        android:text="REGISTER"
-        android:textColor="@color/red"
-        android:textSize="26dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Register"
+        android:backgroundTint="@color/red"
+        app:layout_constraintTop_toBottomOf="@id/confirm_password_edt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwrod_edt"
-        app:layout_constraintVertical_bias="0.332"></Button>
-
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
