@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 String email = email_edt.getText().toString();
-                String password = LoginActivity.this.password_edt.getText().toString();
+                String password = password_edt.getText().toString();
 
                 if (email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "Please enter your email and password", Toast.LENGTH_LONG).show();
