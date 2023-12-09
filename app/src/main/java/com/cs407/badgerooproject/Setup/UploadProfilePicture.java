@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.cs407.badgerooproject.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -42,6 +43,8 @@ public class UploadProfilePicture extends AppCompatActivity {
         upload_btn = findViewById(R.id.upload_btn);
         selectedImageView = findViewById(R.id.circleImageView);
 
+        displayProfilePicture();
+
 
 
         mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
@@ -64,25 +67,28 @@ public class UploadProfilePicture extends AppCompatActivity {
         arrow_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StorageReference imageRef = storageRef.child("images/" + UUID.randomUUID().toString());
-
-                imageRef.putFile(photoUri)
-                        .addOnSuccessListener(taskSnapshot -> {
-                            // Image uploaded successfully
-                            // Now get the download URL
-                            imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                                String imageUrl = uri.toString();
-                                // Call the method to update Firestore
-                                updateUserDocument(imageUrl);
+                if (photoUri != null) {
+                    StorageReference imageRef = storageRef.child("images/" + UUID.randomUUID().toString());
+                    imageRef.putFile(photoUri)
+                            .addOnSuccessListener(taskSnapshot -> {
+                                // Image uploaded successfully
+                                // Now get the download URL
+                                imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                                    String imageUrl = uri.toString();
+                                    // Call the method to update Firestore
+                                    updateUserDocument(imageUrl);
+                                });
+                            })
+                            .addOnFailureListener(e -> {
+                                // Handle unsuccessful uploads
+                                // ...
                             });
-                        })
-                        .addOnFailureListener(e -> {
-                            // Handle unsuccessful uploads
-                            // ...
-                        });
-
+                }else{
+                    Toast.makeText(UploadProfilePicture.this, "No photo selected", Toast.LENGTH_LONG).show();
+                }
                 Intent intent = new Intent(UploadProfilePicture.this, SetUpPreferences.class);
                 startActivity(intent);
+
             }
         });
         }
@@ -105,7 +111,31 @@ public class UploadProfilePicture extends AppCompatActivity {
         }
     }
 
+    private void displayProfilePicture(){
 
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null){
 
+            String userID = currentUser.getUid();
+            FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+            DocumentReference userDocument = firestore.collection("users").document(userID);
+
+            userDocument.get().addOnSuccessListener(documentSnapshot -> {
+                if(documentSnapshot.exists()){
+                    String imageUrl = documentSnapshot.getString("imageUrl");
+                    if (imageUrl != null && !imageUrl.isEmpty()) {
+                        Glide.with(this)
+                                .load(imageUrl)
+                                .into(selectedImageView);
+                    }
+                }
+            }).addOnFailureListener(e -> {
+                Toast.makeText(UploadProfilePicture.this, "Fail to load picture", Toast.LENGTH_LONG).show();
+            });
+
+        }else{
+            Toast.makeText(UploadProfilePicture.this, "Current user is null", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }
