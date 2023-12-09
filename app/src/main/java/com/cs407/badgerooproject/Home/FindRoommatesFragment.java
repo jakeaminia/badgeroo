@@ -1,7 +1,5 @@
 package com.cs407.badgerooproject.Home;
 
-import android.content.Context;
-import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -15,13 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cs407.badgerooproject.R;
-import com.cs407.badgerooproject.Setup.DBHelper;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 // Activity: FindRoommatesActivity
 
@@ -41,7 +40,6 @@ public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapt
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView recyclerView = currentView.findViewById(R.id.roommatesRecyclerView);
         recyclerView.setLayoutManager(layoutManager);
-        Log.i("SIZE BEFORE", String.valueOf(roommates.size()));
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(roommates, this);
         recyclerView.setAdapter(adapter);
     }
@@ -55,16 +53,27 @@ public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapt
 //        roommates = dbHelper.fetchUsers();
         roommates = new ArrayList<>();
         FirebaseFirestore firestoreDatabase = FirebaseFirestore.getInstance();
-
+        String currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        HashMap<String, Object> currentUserData = new HashMap<>();
         firestoreDatabase.collection("users").get().addOnCompleteListener((task) -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    //TODO: don't show the user himself as a potential roommate
-                    roommates.add(new Roommate((HashMap<String, Object>) document.getData()));
+                    if (document.getId().equals(currentUserID)) {
+                        currentUserData.putAll(document.getData());
+                        break;
+                    }
+                }
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    HashMap<String, Object> documentData = (HashMap<String, Object>) document.getData();
+                    if (!document.getId().equals(currentUserID)
+                            && (Objects.equals(documentData.get("Gender"), currentUserData.get("genderPreference")) || Objects.equals(currentUserData.get("genderPreference"), "Both Male and Female"))
+                            && (Objects.equals(currentUserData.get("Gender"), documentData.get("genderPreference")) || Objects.equals(documentData.get("genderPreference"), "Both Male and Female"))
+                            && (Objects.equals(documentData.get("housingStyle"), "Both Apartment and House") || Objects.equals(currentUserData.get("housingStyle"), "Both Apartment and House") || Objects.equals(documentData.get("housingStyle"), currentUserData.get("housingStyle")))) {
+                        roommates.add(new Roommate(documentData));
+                    }
                 }
             }
             initRecyclerView();
-            Log.i("SIZE AFTER", String.valueOf(roommates.size()));
         });
         return currentView;
     }
