@@ -20,13 +20,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-// Fragments: None
-
 public class RegisterActivity extends AppCompatActivity {
-    Button reg_btn;
+
+    FirebaseAuth mAuth;
     EditText email_edt;
     EditText password_edt;
-    FirebaseAuth mAuth;
+    EditText confirm_password_edt;
+    Button reg_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,24 +36,25 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         email_edt = findViewById(R.id.email_edt);
         password_edt = findViewById(R.id.password_edt);
+        confirm_password_edt = findViewById(R.id.confirm_password_edt);
         reg_btn = findViewById(R.id.register_btn);
 
-        //Initialize database
-        DBHelper dbHelper = new DBHelper(this);
         reg_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String email = email_edt.getText().toString();
                 String password = password_edt.getText().toString();
+                String confirmPassword = confirm_password_edt.getText().toString();
 
                 if (email.isEmpty() || password.isEmpty()){
                     Toast.makeText(RegisterActivity.this, "Please enter your email and password", Toast.LENGTH_LONG).show();
-                    return;
-                }else{
-//                    dbHelper.insertLoginCredentials(email, password);
-//                    Intent intent = new Intent(RegisterActivity.this, NameAndGender.class);
-//                    intent.putExtra("email", email);
-//                    startActivity(intent);
+                }
+
+                else if (!confirmPassword.equals(password)) {
+                    Toast.makeText(RegisterActivity.this, "Password do not match", Toast.LENGTH_LONG).show();
+                }
+
+                else {
 
                     mAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
