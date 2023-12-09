@@ -63,6 +63,8 @@
         android:layout_marginTop="60dp"
         android:background="@drawable/login_edt_background"
         android:drawableStart="@drawable/login_password_icon"
+        android:drawableEnd="@drawable/password_hide_icon"
+        android:paddingRight="15dp"
         android:drawablePadding="10dp"
         android:hint="Password"
         android:textColorHint="#B3B3B3"

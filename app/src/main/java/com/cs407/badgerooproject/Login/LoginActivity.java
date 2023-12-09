@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,6 +43,23 @@ public class LoginActivity extends AppCompatActivity {
 
         email_edt = findViewById(R.id.login_email);
         password_edt = findViewById(R.id.login_password);
+        password_edt.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getRawX() >= (password_edt.getRight() - password_edt.getCompoundPaddingRight())) {
+                    // Toggle password visibility
+                    int inputType = password_edt.getInputType();
+                    boolean isPasswordVisible = (inputType & InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD;
+
+                    password_edt.setInputType(InputType.TYPE_CLASS_TEXT | (isPasswordVisible ? InputType.TYPE_TEXT_VARIATION_PASSWORD : InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD));
+                    password_edt.setCompoundDrawablesWithIntrinsicBounds(R.drawable.login_password_icon, 0, isPasswordVisible ? R.drawable.password_hide_icon : R.drawable.password_see_icon, 0);
+
+                    // Move cursor to the end of text
+                    password_edt.setSelection(password_edt.getText().length());
+                    return true;
+                }
+            }
+            return false;
+        });
 
         register = findViewById(R.id.goto_register);
         register.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 String email = email_edt.getText().toString();
-                String password = password_edt.getText().toString();
+                String password = LoginActivity.this.password_edt.getText().toString();
 
                 if (email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "Please enter your email and password", Toast.LENGTH_LONG).show();
