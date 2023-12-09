@@ -10,6 +10,7 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -34,6 +35,8 @@ public class UploadProfilePicture extends AppCompatActivity {
     private ActivityResultLauncher<String> mGetContent;
     private Uri photoUri;
 
+    EditText bio;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,7 @@ public class UploadProfilePicture extends AppCompatActivity {
         StorageReference storageRef = storage.getReference();
         upload_btn = findViewById(R.id.upload_btn);
         selectedImageView = findViewById(R.id.circleImageView);
+        bio = findViewById(R.id.bio_edt);
 
         displayProfilePicture();
 
@@ -67,6 +71,7 @@ public class UploadProfilePicture extends AppCompatActivity {
         arrow_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String userBio = bio.getText().toString();
                 if (photoUri != null) {
                     StorageReference imageRef = storageRef.child("images/" + UUID.randomUUID().toString());
                     imageRef.putFile(photoUri)
@@ -84,7 +89,11 @@ public class UploadProfilePicture extends AppCompatActivity {
                                 // ...
                             });
                 }else{
-                    Toast.makeText(UploadProfilePicture.this, "No photo selected", Toast.LENGTH_LONG).show();
+                    Toast.makeText(UploadProfilePicture.this, "No photo selected", Toast.LENGTH_SHORT).show();
+                }
+
+                if (userBio != null || !userBio.isEmpty()){
+                    updateBio(userBio);
                 }
                 Intent intent = new Intent(UploadProfilePicture.this, SetUpPreferences.class);
                 startActivity(intent);
@@ -101,12 +110,30 @@ public class UploadProfilePicture extends AppCompatActivity {
             String userId = currentUser.getUid();
             DocumentReference userDocRef = db.collection("users").document(userId);
 
+
             userDocRef.update("imageUrl", imageUrl)
                     .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(UploadProfilePicture.this,"Upload picture successfully", Toast.LENGTH_LONG).show();
+                        Toast.makeText(UploadProfilePicture.this,"Profile picture updated successfully", Toast.LENGTH_SHORT).show();
                     })
                     .addOnFailureListener(e -> {
-                        Toast.makeText(UploadProfilePicture.this,"Fail Upload picture", Toast.LENGTH_LONG).show();
+                        Toast.makeText(UploadProfilePicture.this,"Fail to update profile picture", Toast.LENGTH_SHORT).show();
+                    });
+        }
+    }
+
+    private void updateBio(String bio) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            DocumentReference userDocRef = db.collection("users").document(userId);
+            userDocRef.update("bio", bio).
+                    addOnSuccessListener(aVoid -> {
+                        Toast.makeText(UploadProfilePicture.this, "Bio updated successfully", Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(UploadProfilePicture.this, "Fail to update Bio", Toast.LENGTH_SHORT).show();
                     });
         }
     }
@@ -128,9 +155,16 @@ public class UploadProfilePicture extends AppCompatActivity {
                                 .load(imageUrl)
                                 .into(selectedImageView);
                     }
+
+                    String userBio = documentSnapshot.getString("bio");
+                    if (userBio != null && !userBio.isEmpty()) {
+                        bio.setText(userBio);
+                    }else{
+                        Toast.makeText(UploadProfilePicture.this, "No bio", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }).addOnFailureListener(e -> {
-                Toast.makeText(UploadProfilePicture.this, "Fail to load picture", Toast.LENGTH_LONG).show();
+                Toast.makeText(UploadProfilePicture.this, "Fail to load picture", Toast.LENGTH_SHORT).show();
             });
 
         }else{
