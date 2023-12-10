@@ -9,7 +9,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.cs407.badgerooproject.Login.ForgotPassword;
+import com.cs407.badgerooproject.Login.ChangePassword;
 import com.cs407.badgerooproject.Login.LoginActivity;
 import com.cs407.badgerooproject.R;
 import com.cs407.badgerooproject.Setup.SetUpPreferences;
@@ -95,7 +95,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         listChild.setText(childTitle);
         switch (childTitle) {
             case "Change Password":
-                listChild.setOnClickListener((view) -> context.startActivity(new Intent(context, ForgotPassword.class)));
+                listChild.setOnClickListener((view) -> context.startActivity(new Intent(context, ChangePassword.class)));
                 break;
             case "Delete Account":
                 listChild.setOnClickListener((view) -> context.startActivity(new Intent(context, LoginActivity.class)));
