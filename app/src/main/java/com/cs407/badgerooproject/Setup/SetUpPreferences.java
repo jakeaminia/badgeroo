@@ -163,6 +163,7 @@ public class SetUpPreferences extends AppCompatActivity {
                         .addOnSuccessListener(aVoid -> {
                             Intent intent = new Intent(SetUpPreferences.this, FindRoommatesActivity.class);
                             Toast.makeText(SetUpPreferences.this, "Added/Updated Successfully", Toast.LENGTH_LONG).show();
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                         }).addOnFailureListener(e -> {
                             Toast.makeText(SetUpPreferences.this, "Failed to add", Toast.LENGTH_LONG).show();
