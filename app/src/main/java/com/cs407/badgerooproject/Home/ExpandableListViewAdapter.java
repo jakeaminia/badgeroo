@@ -14,6 +14,8 @@ import com.cs407.badgerooproject.Login.LoginActivity;
 import com.cs407.badgerooproject.R;
 import com.cs407.badgerooproject.Setup.SetUpPreferences;
 import com.cs407.badgerooproject.Setup.UploadProfilePicture;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -99,7 +101,8 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
                 break;
             case "Delete Account":
                 listChild.setOnClickListener((view) -> context.startActivity(new Intent(context, LoginActivity.class)));
-                //TODO: delete from firebase
+                //TODO: add confirmation
+                FirebaseAuth.getInstance().getCurrentUser().delete();
                 break;
             case "Edit Preferences":
                 listChild.setOnClickListener((view) -> context.startActivity(new Intent(context, SetUpPreferences.class)));
