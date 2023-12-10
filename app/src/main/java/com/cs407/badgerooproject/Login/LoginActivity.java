@@ -39,6 +39,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            // User is already signed in, navigate to the home activity
+            goToHome();
+            return;
+        }
+
         auth = FirebaseAuth.getInstance();
 
         email_edt = findViewById(R.id.login_email);
@@ -129,6 +135,7 @@ public class LoginActivity extends AppCompatActivity {
     public void goToHome() {
         Intent intent = new Intent(this, FindRoommatesActivity.class);
         startActivity(intent);
+        finish();
     }
 
 }

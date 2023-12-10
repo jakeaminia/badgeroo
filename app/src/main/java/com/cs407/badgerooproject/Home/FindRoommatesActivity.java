@@ -1,18 +1,11 @@
 package com.cs407.badgerooproject.Home;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 
 import com.cs407.badgerooproject.Login.LoginActivity;
 import com.cs407.badgerooproject.R;
@@ -21,28 +14,16 @@ import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-// Fragments: FindRoommatesFragment, SettingsFragment, EditProfileFragment, MessagesListFragment, MessageFragment
-
 public class FindRoommatesActivity extends AppCompatActivity {
-
-    FirebaseAuth auth;
-    FirebaseUser user;
 
     ActivityFindRoommatesBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         binding = ActivityFindRoommatesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-//        auth = FirebaseAuth.getInstance();
-//        user = auth.getCurrentUser();
-//        if (user == null){
-//            Intent intent = new Intent(FindRoommatesActivity.this, LoginActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
 
         replaceFragment(new FindRoommatesFragment());
         binding.bottomNavigationView.setBackground(null);
@@ -59,19 +40,22 @@ public class FindRoommatesActivity extends AppCompatActivity {
             } else if (itemId == R.id.nav_edit_profile) {
                 replaceFragment(new EditProfileFragment());
             } else if (itemId == R.id.logout) {
-//                FirebaseAuth.getInstance().signOut();
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
             else {
                 return false;
             }
             return true;
         });
+
     }
 
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.HomeFragmentContainer, fragment).commit();
     }
+
 }
