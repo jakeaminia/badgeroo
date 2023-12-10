@@ -1,6 +1,7 @@
 package com.cs407.badgerooproject.Home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cs407.badgerooproject.Login.LoginActivity;
 import com.cs407.badgerooproject.R;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,30 +55,36 @@ public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapt
         currentView = inflater.inflate(R.layout.fragment_find_roommates, container, false);
 
         roommates = new ArrayList<>();
-        String currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        HashMap<String, Object> currentUserData = new HashMap<>();
 
-        firestoreDatabase.collection("users").get().addOnCompleteListener((task) -> {
-            if (task.isSuccessful()) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    if (document.getId().equals(currentUserID)) {
-                        currentUserData.putAll(document.getData());
-                        break;
+        try {
+            String currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            HashMap<String, Object> currentUserData = new HashMap<>();
+            firestoreDatabase.collection("users").get().addOnCompleteListener((task) -> {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        if (document.getId().equals(currentUserID)) {
+                            currentUserData.putAll(document.getData());
+                            break;
+                        }
                     }
-                }
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    HashMap<String, Object> documentData = (HashMap<String, Object>) document.getData();
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        HashMap<String, Object> documentData = (HashMap<String, Object>) document.getData();
                         if (!document.getId().equals(currentUserID)
-                            && (Objects.equals(documentData.get("Gender"), currentUserData.get("genderPreference")) || Objects.equals(currentUserData.get("genderPreference"), "Both Male and Female"))
-                            && (Objects.equals(currentUserData.get("Gender"), documentData.get("genderPreference")) || Objects.equals(documentData.get("genderPreference"), "Both Male and Female"))
-                            && (Objects.equals(documentData.get("housingStyle"), "Both Apartment and House") || Objects.equals(currentUserData.get("housingStyle"), "Both Apartment and House") || Objects.equals(documentData.get("housingStyle"), currentUserData.get("housingStyle")))) {
-                        documentData.put("id", document.getId());
-                        roommates.add(new Roommate(documentData));
+                                && (Objects.equals(documentData.get("Gender"), currentUserData.get("genderPreference")) || Objects.equals(currentUserData.get("genderPreference"), "Both Male and Female"))
+                                && (Objects.equals(currentUserData.get("Gender"), documentData.get("genderPreference")) || Objects.equals(documentData.get("genderPreference"), "Both Male and Female"))
+                                && (Objects.equals(documentData.get("housingStyle"), "Both Apartment and House") || Objects.equals(currentUserData.get("housingStyle"), "Both Apartment and House") || Objects.equals(documentData.get("housingStyle"), currentUserData.get("housingStyle")))) {
+                            documentData.put("id", document.getId());
+                            roommates.add(new Roommate(documentData));
+                        }
                     }
                 }
-            }
-            initRecyclerView();
-        });
+                initRecyclerView();
+            });
+        } catch (NullPointerException e) {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getContext(), LoginActivity.class));
+        }
+
         return currentView;
     }
 

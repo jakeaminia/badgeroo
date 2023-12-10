@@ -2,11 +2,14 @@ package com.cs407.badgerooproject.Home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Layout;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.cs407.badgerooproject.Login.ChangePassword;
@@ -15,7 +18,6 @@ import com.cs407.badgerooproject.R;
 import com.cs407.badgerooproject.Setup.SetUpPreferences;
 import com.cs407.badgerooproject.Setup.UploadProfilePicture;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -100,9 +102,33 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
                 listChild.setOnClickListener((view) -> context.startActivity(new Intent(context, ChangePassword.class)));
                 break;
             case "Delete Account":
-                listChild.setOnClickListener((view) -> context.startActivity(new Intent(context, LoginActivity.class)));
-                //TODO: add confirmation
-                FirebaseAuth.getInstance().getCurrentUser().delete();
+                listChild.setOnClickListener((view) -> {
+                    LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    View popupView = inflater.inflate(R.layout.confirmdeletepopup, null);
+                    Button yesButton = popupView.findViewById(R.id.confirmDeleteYes);
+                    Button noButton = popupView.findViewById(R.id.confirmDeleteNo);
+
+                    int width = ViewGroup.LayoutParams.MATCH_PARENT;
+                    int height = ViewGroup.LayoutParams.WRAP_CONTENT;
+
+                    PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+
+                    noButton.setOnClickListener(v -> {
+                        popupWindow.dismiss();
+                    });
+
+                    yesButton.setOnClickListener(v ->
+                            {
+                                FirebaseAuth.getInstance().getCurrentUser().delete();
+                                context.startActivity(new Intent(context, LoginActivity.class));
+                            }
+                    );
+
+                    popupWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
+                });
+
+
+
                 break;
             case "Edit Preferences":
                 listChild.setOnClickListener((view) -> context.startActivity(new Intent(context, SetUpPreferences.class)));
