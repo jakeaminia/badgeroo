@@ -67,5 +67,5 @@ dependencies {
     implementation ("de.hdodenhof:circleimageview:3.1.0")
 
     implementation ("com.google.maps.android:android-maps-utils:3.4.0")
-
+    implementation ("com.firebaseui:firebase-ui-firestore:8.0.2")
 }
