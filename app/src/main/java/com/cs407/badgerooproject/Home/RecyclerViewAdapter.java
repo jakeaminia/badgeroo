@@ -48,7 +48,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.messageButton.setText(String.format("Message %s", currentRoommate.getFullName().split(" ")[0]));
 
-        if (currentRoommate.getProfilePicture() == null || currentRoommate.getProfilePicture().isEmpty() || !currentRoommate.getProfilePicture().startsWith("https://firebasestorage.googleapis.com")) {
+        if (currentRoommate.getProfilePicture() == null || !currentRoommate.getProfilePicture().startsWith("https://firebasestorage.googleapis.com")) {
             holder.profilePicture.setImageResource((currentRoommate.getGender().equals("Male"))
                     ? R.drawable.badger_image_1 : R.drawable.badger_image_2);
         } else {
