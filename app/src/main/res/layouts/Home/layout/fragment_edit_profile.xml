@@ -1,48 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".Home.EditProfileFragment">
 
-    <TextView
-        android:id="@+id/editProfileHeading"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/edit_profile_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#AA0000"
-        android:gravity="center"
-        android:padding="10sp"
-        android:text="Edit Profile"
-        android:textColor="#FFFFFF"
-        android:textSize="40sp" />
+        android:layout_height="80dp"
+        android:background="@color/red"
+        app:layout_constraintTop_toTopOf="parent" >
 
-    <ImageView
+        <TextView
+            android:id="@+id/edit_profile_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Edit Profile"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/myPfp"
-        android:layout_width="match_parent"
-        android:layout_height="193dp"
-        android:src="@color/red" />
+        android:layout_width="250dp"
+        android:layout_height="225dp"
+        android:layout_marginTop="50dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/bucky"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="4dp"
+        app:layout_constraintTop_toBottomOf="@id/edit_profile_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/myName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10sp"
-        android:text="John Doe"
+        android:layout_margin="20dp"
+        android:text=""
         android:textAlignment="center"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/myPfp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/myBio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10sp"
-        android:text="What a lovely bio."
-        android:textSize="20sp" />
-
+        android:layout_margin="20dp"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/myName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ExpandableListView
         android:id="@+id/expandableListEditProfile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:divider="@color/black"
+        android:dividerHeight="1dp"
+        app:layout_constraintTop_toBottomOf="@id/myBio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/red"
+        android:scrollbars="none" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

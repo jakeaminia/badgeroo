@@ -2,6 +2,8 @@ package com.cs407.badgerooproject.Home;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +46,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.name.setText(currentRoommate.getFullName());
 
-        holder.bio.setText(currentRoommate.toString());
+        //holder.bio.setText(currentRoommate.toString());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            holder.bio.setText(Html.fromHtml(currentRoommate.toString(), Html.FROM_HTML_MODE_LEGACY));
+        } else {
+            holder.bio.setText(Html.fromHtml(currentRoommate.toString()));
+        }
 
         holder.messageButton.setText(String.format("Message %s", currentRoommate.getFullName().split(" ")[0]));
 
