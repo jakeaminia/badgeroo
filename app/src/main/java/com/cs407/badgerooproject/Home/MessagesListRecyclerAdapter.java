@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cs407.badgerooproject.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 
 public class MessagesListRecyclerAdapter extends FirestoreRecyclerAdapter<MessagingModel, MessagesListRecyclerAdapter.MessagingModelViewHolder> {
@@ -38,6 +39,15 @@ public class MessagesListRecyclerAdapter extends FirestoreRecyclerAdapter<Messag
         FirebaseUtil.getOtherUserFromChatroom(model.getUserIds())
                 .get().addOnCompleteListener(task -> {
                     if(task.isSuccessful()) {
+
+                        boolean lastMessageSentByMe = model.getLastMessageSenderId().equals(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+                        holder.nameText.setText(task.getResult().get("Name").toString());
+                        if(lastMessageSentByMe)
+                            holder.lastMessageText.setText("You: " + model.getLastMessage());
+                        else
+                            holder.lastMessageText.setText(model.getLastMessage());
+
                         holder.nameText.setText(task.getResult().get("Name").toString());
                         holder.lastMessageText.setText(model.getLastMessage());
                         holder.lastMessageTime.setText(FirebaseUtil.timestampToString(model.getLastMessageTimestamp()));

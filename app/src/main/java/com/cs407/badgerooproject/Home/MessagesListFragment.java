@@ -98,6 +98,6 @@ public class MessagesListFragment extends Fragment implements MessagesListRecycl
     public void onResume() {
         super.onResume();
         if(adapter!=null)
-            adapter.startListening();
+            adapter.notifyDataSetChanged();
     }
 }
