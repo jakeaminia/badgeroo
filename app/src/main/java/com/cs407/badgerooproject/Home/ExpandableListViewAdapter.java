@@ -19,8 +19,10 @@ import com.cs407.badgerooproject.Setup.SetUpPreferences;
 import com.cs407.badgerooproject.Setup.UploadProfilePicture;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +32,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     private Context context;
     private ArrayList<String> listParents;
     private HashMap<String, String> listChildren;
+
 
 
     public ExpandableListViewAdapter(Context context, ArrayList<String> listParents, HashMap<String, String> listChildren) {
@@ -91,7 +94,13 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         String childTitle = (String) getChild(groupPosition, childPosition);
-        ;
+
+        FirebaseFirestore firestoreInstance = FirebaseFirestore.getInstance();
+        FirebaseAuth authInstance = FirebaseAuth.getInstance();
+
+        CollectionReference users = firestoreInstance.collection("users");
+        CollectionReference chatrooms = firestoreInstance.collection("chatrooms");
+
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -122,12 +131,33 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
                     yesButton.setOnClickListener(v ->
                             {
-                                FirebaseUser currUser = FirebaseAuth.getInstance().getCurrentUser();
-                                DocumentReference currUserDoc = FirebaseFirestore.getInstance().collection("users").document(currUser.getUid());
+                                FirebaseUser currUser = authInstance.getCurrentUser();
+                                String currentUserId = currUser.getUid();
+                                DocumentReference currUserDoc = users.document(currentUserId);
 
                                 currUser.delete().addOnSuccessListener(a -> {
                                     currUserDoc.delete().addOnSuccessListener(b -> {
-                                        context.startActivity(new Intent(context, LoginActivity.class));
+                                        chatrooms.get().addOnCompleteListener(task -> {
+                                            if (task.isSuccessful()) {
+                                                HashMap<String, Object> documentData = new HashMap<>();
+                                                ArrayList<String> chatroomsToDelete = new ArrayList<>();
+                                                for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                                    documentData.clear();
+                                                    documentData.putAll(documentSnapshot.getData());
+                                                    try {
+                                                        if (((ArrayList<String>) documentData.get("userIds")).get(0).equals(currentUserId) || ((ArrayList<String>) documentData.get("userIds")).get(0).equals(currentUserId)) {
+                                                            chatroomsToDelete.add((String) documentData.get("chatroomId"));
+                                                        }
+                                                    } catch (NullPointerException e) {
+
+                                                    }
+                                                }
+                                                for (String chatroomId : chatroomsToDelete) {
+                                                    chatrooms.document(chatroomId).delete();
+                                                }
+                                            }
+                                            context.startActivity(new Intent(context, LoginActivity.class));
+                                        });
                                     });
                                 });
                             }

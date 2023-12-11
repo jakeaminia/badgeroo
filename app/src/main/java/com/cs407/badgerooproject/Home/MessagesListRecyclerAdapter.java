@@ -20,6 +20,7 @@ public class MessagesListRecyclerAdapter extends FirestoreRecyclerAdapter<Messag
 
     private MessagesListRecyclerAdapter.Listener listener;
     Context context;
+
     public MessagesListRecyclerAdapter(@NonNull FirestoreRecyclerOptions<MessagingModel> options, Context context, Listener listener) {
         super(options);
         this.context = context;
@@ -37,16 +38,17 @@ public class MessagesListRecyclerAdapter extends FirestoreRecyclerAdapter<Messag
         //2:38:40
         FirebaseUtil.getOtherUserFromChatroom(model.getUserIds())
                 .get().addOnCompleteListener(task -> {
-                    if(task.isSuccessful()) {
-                        holder.nameText.setText(task.getResult().get("Name").toString());
-                        holder.lastMessageText.setText(model.getLastMessage());
-                        holder.lastMessageTime.setText(FirebaseUtil.timestampToString(model.getLastMessageTimestamp()));
+                    if (task.isSuccessful()) {
+                        try {
+                            holder.nameText.setText(task.getResult().get("Name").toString());
+                            holder.lastMessageText.setText(model.getLastMessage());
+                            holder.lastMessageTime.setText(FirebaseUtil.timestampToString(model.getLastMessageTimestamp()));
 
-                        String otherUserId = task.getResult().getId();
+                            String otherUserId = task.getResult().getId();
 
-                        holder.itemView.setOnClickListener(v -> {
-                            //navigate to chat activity
-                            listener.onChatClick(otherUserId);
+                            holder.itemView.setOnClickListener(v -> {
+                                //navigate to chat activity
+                                listener.onChatClick(otherUserId);
 
 //                            Bundle bundle = new Bundle();
 //                            bundle.putString("their_id", otherUserId); // put other user's name in bundle
@@ -56,7 +58,13 @@ public class MessagesListRecyclerAdapter extends FirestoreRecyclerAdapter<Messag
 //                            // switch to message fragment
 //                            FragmentManager fragmentManager = this.getFragmentManager();
 //                            fragmentManager.beginTransaction().replace(R.id.HomeFragmentContainer, messageFragment).commit();
-                        });
+                            });
+                        } catch (NullPointerException e) {
+                            holder.nameText.setText("[Account Deleted]");
+                            holder.nameText.setTextColor(context.getResources().getColor(R.color.dark_red, null));
+                            holder.lastMessageText.setText("- - - - -");
+                            holder.lastMessageText.setTextColor(context.getResources().getColor(R.color.dark_red, null));
+                        }
                     }
                 });
     }
@@ -67,7 +75,6 @@ public class MessagesListRecyclerAdapter extends FirestoreRecyclerAdapter<Messag
         View view = LayoutInflater.from(context).inflate(R.layout.msg_list_row, parent, false);
         return new MessagingModelViewHolder(view, listener);
     }
-
 
 
     class MessagingModelViewHolder extends RecyclerView.ViewHolder {
