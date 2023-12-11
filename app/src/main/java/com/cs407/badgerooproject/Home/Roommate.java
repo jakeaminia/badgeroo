@@ -51,7 +51,15 @@ public class Roommate {
 
     @Override
     public String toString() {
-        return String.format("%s looking for %s %s roommates for a(n) %s in %s from %s to %s with a price range from $%s to $%s.\n\n%s",
-                gender, numRoommates, roommateGender, housingStyle, desiredLocation, startDate, endDate, minRent, maxRent, (bio != null) ? bio : "");
+        return String.format(
+                "<b>Gender:</b> %s<br>" +
+                "<b>Number of Roommates:</b> %s<br>" +
+                "<b>Roommate Gender:</b> %s<br>" +
+                "<b>Housing Style:</b> %s<br>" +
+                "<b>Location:</b> %s<br>" +
+                "<b>Dates looking for:</b> %s to %s<br>" +
+                "<b>Rent range:</b> $%s to $%s<br>" +
+                "<b>Bio:</b> %s<br>", gender, numRoommates, roommateGender, housingStyle, desiredLocation,
+                startDate, endDate, minRent, maxRent, (bio != null) ? bio : "");
     }
 }
