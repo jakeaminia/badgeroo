@@ -27,8 +27,8 @@
             android:fontFamily="sans-serif-medium"
             android:text="Set Your Preferences"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            android:textSize="30sp"
-            />  <!-- Reference your custom font here -->
+            android:textSize="24sp"
+            />
 
     </androidx.appcompat.widget.Toolbar>
 

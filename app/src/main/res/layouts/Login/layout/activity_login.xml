@@ -21,15 +21,15 @@
             android:text="Login to BadgerRoo!"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/login_image"
-        android:layout_width="242dp"
-        android:layout_height="214dp"
+        android:layout_width="250dp"
+        android:layout_height="225dp"
         android:layout_marginTop="60dp"
         android:layout_centerInParent="true"
         android:src="@drawable/bucky"
