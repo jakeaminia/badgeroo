@@ -145,7 +145,8 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
                                                     documentData.clear();
                                                     documentData.putAll(documentSnapshot.getData());
                                                     try {
-                                                        if (((ArrayList<String>) documentData.get("userIds")).get(0).equals(currentUserId) || ((ArrayList<String>) documentData.get("userIds")).get(0).equals(currentUserId)) {
+                                                        if (((ArrayList<String>) documentData.get("userIds")).get(0).equals(currentUserId) ||
+                                                                ((ArrayList<String>) documentData.get("userIds")).get(1).equals(currentUserId)) {
                                                             chatroomsToDelete.add((String) documentData.get("chatroomId"));
                                                         }
                                                     } catch (NullPointerException e) {
