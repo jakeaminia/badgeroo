@@ -125,15 +125,16 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
                                 FirebaseUser currUser = FirebaseAuth.getInstance().getCurrentUser();
                                 DocumentReference currUserDoc = FirebaseFirestore.getInstance().collection("users").document(currUser.getUid());
 
-                                currUser.delete();
-                                currUserDoc.delete();
-                                context.startActivity(new Intent(context, LoginActivity.class));
+                                currUser.delete().addOnSuccessListener(a -> {
+                                    currUserDoc.delete().addOnSuccessListener(b -> {
+                                        context.startActivity(new Intent(context, LoginActivity.class));
+                                    });
+                                });
                             }
                     );
 
                     popupWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
                 });
-
 
 
                 break;
