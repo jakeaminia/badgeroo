@@ -13,11 +13,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.cs407.badgerooproject.Login.LoginActivity;
 import com.cs407.badgerooproject.R;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -59,14 +62,17 @@ public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapt
         try {
             String currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
             HashMap<String, Object> currentUserData = new HashMap<>();
+
+            String currUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            DocumentReference currentUserDoc = FirebaseFirestore.getInstance().collection("users").document(currUserId);
+            currentUserDoc.get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) {
+                    currentUserData.putAll(documentSnapshot.getData());
+                }
+            });
+
             firestoreDatabase.collection("users").get().addOnCompleteListener((task) -> {
                 if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        if (document.getId().equals(currentUserID)) {
-                            currentUserData.putAll(document.getData());
-                            break;
-                        }
-                    }
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         HashMap<String, Object> documentData = (HashMap<String, Object>) document.getData();
                         if (!document.getId().equals(currentUserID)

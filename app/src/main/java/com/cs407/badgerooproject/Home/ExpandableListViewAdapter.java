@@ -18,6 +18,9 @@ import com.cs407.badgerooproject.R;
 import com.cs407.badgerooproject.Setup.SetUpPreferences;
 import com.cs407.badgerooproject.Setup.UploadProfilePicture;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -119,7 +122,11 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
                     yesButton.setOnClickListener(v ->
                             {
-                                FirebaseAuth.getInstance().getCurrentUser().delete();
+                                FirebaseUser currUser = FirebaseAuth.getInstance().getCurrentUser();
+                                DocumentReference currUserDoc = FirebaseFirestore.getInstance().collection("users").document(currUser.getUid());
+
+                                currUser.delete();
+                                currUserDoc.delete();
                                 context.startActivity(new Intent(context, LoginActivity.class));
                             }
                     );

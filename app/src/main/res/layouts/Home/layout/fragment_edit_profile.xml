@@ -17,6 +17,30 @@
         android:textColor="#FFFFFF"
         android:textSize="40sp" />
 
+    <ImageView
+        android:id="@+id/myPfp"
+        android:layout_width="match_parent"
+        android:layout_height="193dp"
+        android:src="@color/red" />
+
+    <TextView
+        android:id="@+id/myName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:text="John Doe"
+        android:textAlignment="center"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/myBio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:text="What a lovely bio."
+        android:textSize="20sp" />
+
+
     <ExpandableListView
         android:id="@+id/expandableListEditProfile"
         android:layout_width="match_parent"
