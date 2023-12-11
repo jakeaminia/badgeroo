@@ -51,15 +51,64 @@ public class Roommate {
 
     @Override
     public String toString() {
-        return String.format(
+        /*return String.format(
                 "<b>Gender:</b> %s<br>" +
                 "<b>Number of Roommates:</b> %s<br>" +
                 "<b>Roommate Gender:</b> %s<br>" +
                 "<b>Housing Style:</b> %s<br>" +
                 "<b>Location:</b> %s<br>" +
                 "<b>Dates looking for:</b> %s to %s<br>" +
-                "<b>Rent range:</b> $%s to $%s<br>" +
-                "<b>Bio:</b> %s<br>", gender, numRoommates, roommateGender, housingStyle, desiredLocation,
-                startDate, endDate, minRent, maxRent, (bio != null) ? bio : "");
+                "<b>Rent range:</b> %s to %s<br>" +
+                "<b>Bio:</b> %s<br>",
+                (gender != null && !gender.isEmpty() && !gender.equals("null")) ? gender : "Not specified",
+                (numRoommates != null && !numRoommates.isEmpty() && !numRoommates.equals("null")) ? numRoommates : "Not specified",
+                (roommateGender != null && !roommateGender.isEmpty() && !roommateGender.equals("null")) ? roommateGender : "Not specified",
+                (housingStyle != null && !housingStyle.isEmpty() && !housingStyle.equals("null")) ? housingStyle : "Not specified",
+                (desiredLocation != null && !desiredLocation.isEmpty() && !desiredLocation.equals("null")) ? desiredLocation : "Not specified",
+                (startDate != null && !startDate.isEmpty() && !startDate.equals("null")) ? startDate : "Not specified",
+                (endDate != null && !endDate.isEmpty() && !endDate.equals("null")) ? endDate : "Not specified",
+                (minRent != null && !minRent.isEmpty() && !minRent.equals("null")) ? "$" + minRent : "Not specified",
+                (maxRent != null && !maxRent.isEmpty() && !maxRent.equals("null")) ? "$" + maxRent : "Not specified",
+                (bio != null && !bio.isEmpty() && !bio.equals("null")) ? bio : "Not specified"
+        );
+    }*/
+        return String.format(
+                "<b>Gender:</b> %s<br>" +
+                "<b>Number of Roommates:</b> %s<br>" +
+                "<b>Roommate Gender:</b> %s<br>" +
+                "<b>Housing Style:</b> %s<br>" +
+                "<b>Location:</b> %s<br>" +
+                "<b>Dates looking for:</b> %s<br>" +
+                "<b>Rent range:</b> %s<br>" +
+                "<b>Bio:</b> %s<br>",
+                formatString(gender),
+                formatString(numRoommates),
+                formatString(roommateGender),
+                formatString(housingStyle),
+                formatString(desiredLocation),
+                formatRange(startDate, endDate, false),
+                formatRange(minRent, maxRent, true),
+                formatString(bio)
+        );
     }
+
+    private String formatString(String text) {
+        if (text == null || text.isEmpty() || text.equals("null")) {
+            return "<span style='color: red;'>Not specified</span>";
+        } else {
+            return text;
+        }
+    }
+
+    private String formatRange(String start, String end, boolean isCurrency) {
+        if ((start == null || start.isEmpty() || start.equals("null")) &&
+                (end == null || end.isEmpty() || end.equals("null"))) {
+            return "<span style='color: red;'>Not specified</span>";
+        } else {
+            String formattedStart = (isCurrency && start != null && !start.isEmpty() && !start.equals("null")) ? "$" + start : start;
+            String formattedEnd = (isCurrency && end != null && !end.isEmpty() && !end.equals("null")) ? "$" + end : end;
+            return formattedStart + " to " + formattedEnd;
+        }
+    }
+
 }

@@ -14,13 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cs407.badgerooproject.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 
 public class MessagesListRecyclerAdapter extends FirestoreRecyclerAdapter<MessagingModel, MessagesListRecyclerAdapter.MessagingModelViewHolder> {
 
     private MessagesListRecyclerAdapter.Listener listener;
     Context context;
-
     public MessagesListRecyclerAdapter(@NonNull FirestoreRecyclerOptions<MessagingModel> options, Context context, Listener listener) {
         super(options);
         this.context = context;
@@ -38,33 +38,26 @@ public class MessagesListRecyclerAdapter extends FirestoreRecyclerAdapter<Messag
         //2:38:40
         FirebaseUtil.getOtherUserFromChatroom(model.getUserIds())
                 .get().addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        try {
-                            holder.nameText.setText(task.getResult().get("Name").toString());
+                    if(task.isSuccessful()) {
+
+                        boolean lastMessageSentByMe = model.getLastMessageSenderId().equals(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+                        holder.nameText.setText(task.getResult().get("Name").toString());
+                        if(lastMessageSentByMe)
+                            holder.lastMessageText.setText("You: " + model.getLastMessage());
+                        else
                             holder.lastMessageText.setText(model.getLastMessage());
-                            holder.lastMessageTime.setText(FirebaseUtil.timestampToString(model.getLastMessageTimestamp()));
 
-                            String otherUserId = task.getResult().getId();
+                        holder.nameText.setText(task.getResult().get("Name").toString());
+                        holder.lastMessageText.setText(model.getLastMessage());
+                        holder.lastMessageTime.setText(FirebaseUtil.timestampToString(model.getLastMessageTimestamp()));
 
-                            holder.itemView.setOnClickListener(v -> {
-                                //navigate to chat activity
-                                listener.onChatClick(otherUserId);
+                        String otherUserId = task.getResult().getId();
 
-//                            Bundle bundle = new Bundle();
-//                            bundle.putString("their_id", otherUserId); // put other user's name in bundle
-//                            com.cs407.badgerooproject.Home.MessageFragment messageFragment = new com.cs407.badgerooproject.Home.MessageFragment();
-//                            messageFragment.setArguments(bundle);
-//
-//                            // switch to message fragment
-//                            FragmentManager fragmentManager = this.getFragmentManager();
-//                            fragmentManager.beginTransaction().replace(R.id.HomeFragmentContainer, messageFragment).commit();
-                            });
-                        } catch (NullPointerException e) {
-                            holder.nameText.setText("[Account Deleted]");
-                            holder.nameText.setTextColor(context.getResources().getColor(R.color.dark_red, null));
-                            holder.lastMessageText.setText("- - - - -");
-                            holder.lastMessageText.setTextColor(context.getResources().getColor(R.color.dark_red, null));
-                        }
+                        holder.itemView.setOnClickListener(v -> {
+                            //navigate to chat activity
+                            listener.onChatClick(otherUserId);
+                        });
                     }
                 });
     }
@@ -75,7 +68,6 @@ public class MessagesListRecyclerAdapter extends FirestoreRecyclerAdapter<Messag
         View view = LayoutInflater.from(context).inflate(R.layout.msg_list_row, parent, false);
         return new MessagingModelViewHolder(view, listener);
     }
-
 
     class MessagingModelViewHolder extends RecyclerView.ViewHolder {
         TextView nameText;
@@ -94,5 +86,3 @@ public class MessagesListRecyclerAdapter extends FirestoreRecyclerAdapter<Messag
 
     }
 }
-
-

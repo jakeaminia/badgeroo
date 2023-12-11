@@ -30,9 +30,6 @@ public class MessagesListFragment extends Fragment implements MessagesListRecycl
 
     }
 
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -98,6 +95,6 @@ public class MessagesListFragment extends Fragment implements MessagesListRecycl
     public void onResume() {
         super.onResume();
         if(adapter!=null)
-            adapter.startListening();
+            adapter.notifyDataSetChanged();
     }
 }
