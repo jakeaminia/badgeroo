@@ -1,9 +1,11 @@
 package com.cs407.badgerooproject.Home;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class FirebaseUtil {
@@ -14,6 +16,10 @@ public class FirebaseUtil {
         } else {
             return FirebaseFirestore.getInstance().collection("users").document(userIds.get(0));
         }
+    }
+
+    public static String timestampToString(Timestamp timestamp) {
+        return new SimpleDateFormat("HH:MM").format(timestamp.toDate());
     }
 
 }

@@ -57,5 +57,6 @@ public class FindRoommatesActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.HomeFragmentContainer, fragment).commit();
     }
+    
 
 }
