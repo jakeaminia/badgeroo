@@ -14,18 +14,19 @@ import android.view.ViewGroup;
 import com.cs407.badgerooproject.Login.LoginActivity;
 import com.cs407.badgerooproject.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapter.MessageListener {
 
     private ArrayList<Roommate> roommates;
-    private FirebaseFirestore firestoreDatabase = FirebaseFirestore.getInstance();
+    private FirebaseFirestore firestoreInstance = FirebaseFirestore.getInstance();
+    private CollectionReference users = firestoreInstance.collection("users");
     private View currentView;
 
     @Override
@@ -52,13 +53,12 @@ public class FindRoommatesFragment extends Fragment implements RecyclerViewAdapt
             String currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
             HashMap<String, Object> currentUserData = new HashMap<>();
 
-            DocumentReference currentUserDoc = firestoreDatabase.collection("users").document(currentUserID);
-            currentUserDoc.get().addOnSuccessListener(documentSnapshot -> {
+            users.document(currentUserID).get().addOnSuccessListener(documentSnapshot -> {
                 if (documentSnapshot.exists()) {
                     currentUserData.putAll(documentSnapshot.getData());
                 }
 
-                firestoreDatabase.collection("users").get().addOnCompleteListener((task) -> {
+                users.get().addOnCompleteListener((task) -> {
                     if (task.isSuccessful()) {
                         roommates.clear(); // Clear the existing data
                         for (QueryDocumentSnapshot document : task.getResult()) {
