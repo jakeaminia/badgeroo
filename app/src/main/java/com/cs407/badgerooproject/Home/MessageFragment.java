@@ -12,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.cs407.badgerooproject.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +24,7 @@ import com.google.api.Distribution;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -39,6 +42,7 @@ public class MessageFragment extends Fragment {
     String sender;
     String recipient;
     MessagesRecyclerAdapter adapter;
+    ImageView profilePicture;
 
     public MessageFragment() {
         // Required empty public constructor
@@ -56,6 +60,7 @@ public class MessageFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_message, container, false);
+        profilePicture = (ImageView) view.findViewById(R.id.message_profile_image);
         messageInput = (EditText) view.findViewById(R.id.message_input);
         sendMessageBtn = (ImageButton) view.findViewById(R.id.message_send_btn);
         otherName = (TextView) view.findViewById(R.id.other_name);
@@ -66,7 +71,18 @@ public class MessageFragment extends Fragment {
         FirebaseFirestore.getInstance().collection("users").document(recipient)
                 .get().addOnCompleteListener(task -> {
                     if(task.isSuccessful()) {
-                        otherName.setText(task.getResult().get("Name").toString());
+                        DocumentSnapshot documentSnapshot = task.getResult();
+                        otherName.setText(documentSnapshot.getString("Name"));
+
+                        String imageUrl = documentSnapshot.getString("imageUrl");
+                        String gender = documentSnapshot.getString("Gender");
+
+                        if (imageUrl == null || !imageUrl.startsWith("https://firebasestorage.googleapis.com")) {
+                            profilePicture.setImageResource((gender != null && gender.equals("Male"))
+                                    ? R.drawable.badger_image_1 : R.drawable.badger_image_2);
+                        } else {
+                            Glide.with(view).load(imageUrl).into(profilePicture);
+                        }
                     }
                 });
 
@@ -154,10 +170,4 @@ public class MessageFragment extends Fragment {
             }
         });
     }
-
-//    @Override
-//    public void onViewCreated(View view, Bundle savedInstanceState) {
-//        messageInput = getView().findViewById(R.id.message_input);
-//        sendMessageBtn = getView().findViewById(R.id.message_send_btn);
-//    }
 }
