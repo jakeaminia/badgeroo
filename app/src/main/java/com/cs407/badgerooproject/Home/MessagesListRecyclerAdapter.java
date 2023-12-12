@@ -54,9 +54,12 @@ public class MessagesListRecyclerAdapter extends FirestoreRecyclerAdapter<Messag
                         String otherUserName = result.getString("Name");
                         holder.nameText.setText(otherUserName);
 
-                        String imageUrl = result.contains("imageUrl") ? result.getString("imageUrl") : null;
+                        String imageUrl = result.getString("imageUrl");
+                        String gender = result.getString("Gender");
+
                         if (imageUrl == null || !imageUrl.startsWith("https://firebasestorage.googleapis.com")) {
-                            holder.profileImage.setImageResource(R.drawable.bucky);
+                            holder.profileImage.setImageResource((gender != null && gender.equals("Male"))
+                                    ? R.drawable.badger_image_1 : R.drawable.badger_image_2);
                         } else {
                             Glide.with(holder.itemView.getContext()).load(imageUrl).into(holder.profileImage);
                         }
